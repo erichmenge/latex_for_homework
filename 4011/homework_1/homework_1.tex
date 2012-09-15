@@ -61,10 +61,10 @@ Solve this problem with Induction \\
 \hfill Q.E.D
 \end{problem} \newpage
 
-\begin{problem}{2} Part c of Exercise 1.4 \\
+\begin{problem}{2} Part c of Exercise 1.4
 \indent \(\{ w|\text{w has an even number of a's and one or two b's}\} \) \\
 
-${A}$
+${A}$ = \(\{ w|\text{w has an even number of a's}\} \)
 
 \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm]
   \node[initial,state,accepting] (S)      {};
@@ -79,7 +79,8 @@ ${A}$
 
 \end{tikzpicture} \\
 
-${B}$ \\
+${B}$ = \(\{ w|\text{w has one or two b's}\} \)
+
 \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm]
   \node[initial,state] (S)      {};
   \node[state, accepting]         (q1) [right of=S]  {};
@@ -100,7 +101,8 @@ ${B}$ \\
   ;
 \end{tikzpicture} \\
 
-${A \times B}$ \\
+${A \times B}$
+
 \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm]
   \node[initial, state] (a1b1) {};
   \node[state, accepting]  (a1b2) [right of=a1b1] {};
