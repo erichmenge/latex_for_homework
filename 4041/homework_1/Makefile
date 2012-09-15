@@ -1,7 +1,7 @@
 all: homework_1.pdf
 
-homework_1.pdf: homework_1.tex
-	xelatex homework_1.tex
+%.pdf: %.tex
+	xelatex $<
 
 clean:
-	rm -f *.log *.dvi *.aux homework_1.pdf
+	rm -f *.log *.dvi *.aux *.pdf
