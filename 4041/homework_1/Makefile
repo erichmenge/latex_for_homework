@@ -1,6 +1,4 @@
-all: homework_1.pdf
-
-%.pdf: %.tex
+homework_1.pdf: homework_1.tex bin_tree1.eps
 	xelatex $<
 
 clean:
