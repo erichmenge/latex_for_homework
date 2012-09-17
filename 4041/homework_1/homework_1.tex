@@ -142,9 +142,37 @@ Algorithms \& Data Structures Section 003} %if necessary, replace with your cour
 \end{figure}
 \end{problem} \newpage
 
-\begin{problem}{6.3-3} Show that there are at most $\lceil n/2^{h+1} \rceil$ nodes of height h in any n-element heap \\
-  \begin{proof}
+\begin{problem}{6.3-3} Show that there are at most $\lceil n/2^{h+1} \rceil$ nodes of height h in any n-element heap. \\
+  \begin{proof}\ \\
+
+  \noindent {\bf Basis Step:} \\
+
+  \indent Let $h = 0$ in a heap of height $2$ (see figure \ref{fig:bintree2}). \\
+  \indent Then $4 \le \lceil 7/2^{0+1} \rceil = 4 \checkmark$ \\
+
+  \noindent {\bf Inductive Step:} \\
+
+  We know from problem 6.1-2 that the first leaf is indexed by $\lfloor n/2 \rfloor + 1$. So that means the last parent must
+  be indexed by $\lfloor n/2 \rfloor$. The index of the last parent is also the number of parents in the heap. So
+  $n - \lfloor n/2 \rfloor$ or $\lceil n/2 \rceil$ is the number of leaves in a heap. So we can then take a heap of height $h - 1$
+  to have $n - \lceil n/2 \rceil$ or $\lfloor n/2 \rfloor$ nodes. Using the given function we have the number of nodes at $h - 1$
+  given by $\lceil n/2^{h+1-1} \rceil = \lceil n/2^{h} \rceil$. Using $n - \lceil n/2 \rceil$ or $\lfloor n/2 \rfloor$ as our
+  value of $n$ in the $h - 1$ tree we have:
+  \begin{align*}
+    \lceil (\lfloor n/2 \rfloor)/2^{h} \rceil &\le \lceil n/2^{h+1} \rceil \\
+    \lceil 2^{-h} \cdot \lfloor n/2 \rfloor \rceil &\le  \lceil n \cdot 2^{-h-1} \rceil \\
+    \lceil 2^{-h} \cdot \lfloor n/2 \rfloor \rceil &\le  \lceil n \cdot 2^{-h}\cdot 2^{-1} \cdot \rceil \\
+    \lceil \lfloor n/2 \rfloor \rceil &\le  \lceil (1/2)n\rceil \\
+    n &= n
+  \end{align*}
+  This shows that the given function works works on all sub-heaps of a heap of height $h$.
   \end{proof}
+  \begin{figure}[!h]
+    \centering
+    \caption{Binary Tree of height $h$}
+    \includegraphics[scale=.75]{bin_tree2.eps}
+    \label{fig:bintree2}
+  \end{figure}
 \end{problem}
 
 % --------------------------------------------------------------
