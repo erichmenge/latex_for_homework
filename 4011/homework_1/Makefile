@@ -1,7 +1,6 @@
-all: homework_1.pdf
-
 homework_1.pdf: homework_1.tex
-	xelatex homework_1.tex
+	latexmk -pdf -pdflatex="pdflatex -interactive=nonstopmode" -use-make $<
 
 clean:
-	rm -f *.log *.dvi *.aux homework_1.pdf
+	latexmk -CA
+	rm -f *.pdf
