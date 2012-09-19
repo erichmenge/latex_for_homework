@@ -46,6 +46,10 @@ Algorithms \& Data Structures Section 003} %if necessary, replace with your cour
     The height of a tree is the number of edges on the longest path from the root to a leaf. If we take a complete binary tree
     in which all leaves are of the same height and all parents have two children, and add one node to the very left, we will have
     a tree with $\boxed{2^{h}}$ nodes. So this is the minimum number of nodes we can have in a tree of $h$ height.
+    This can be demonstrated inductively by seeing that our first node of height $0$ is $2^{0}$ nodes. When we add to the height
+    of the heap, we have two nodes, or $2^1$. Adding a third node does not increase the height, and so does not break this minimum
+    rule. And because a heap is a binary tree, every parent can have two children and so it continues with powers of two as height
+    increases. Each layer having twice as many nodes as the layer before it.
 
     Using this same logic, we can fill this entire layer by letting the number of nodes equal $2^{h+1}$. But now we
     have an extra node, which must be subtracted. So the maximum number of nodes in a tree of height $h$ is $\boxed{2^{h+1} - 1}$.
@@ -65,7 +69,7 @@ Algorithms \& Data Structures Section 003} %if necessary, replace with your cour
       2^{h} &\le n &<& 2^{h+1} \text{ (demonstrated in Problem 6.1.1)} \\
       h &\le \lg n &<& h+1
     \end{alignat*}
-    $\lg n < h + 1$ and $\lg n \ge h$ so $\lg n = h$. But $h \in \Z$, so $h = \lfloor \lg n \rfloor$. We take
+    $\lg n < h + 1$, $\lg n \ge h$ and $h \in \Z$, so $h = \lfloor \lg n \rfloor$. We take
     the floor because $h$ must be an integer, and rounding up would make $h$ too large by definition $\lg n < h + 1$.
   \end{proof}
 \end{problem}
@@ -153,10 +157,10 @@ Algorithms \& Data Structures Section 003} %if necessary, replace with your cour
   \noindent {\bf Inductive Step:} \\
 
   We know from problem 6.1-2 that the first leaf is indexed by $\lfloor n/2 \rfloor + 1$. So that means the last parent must
-  be indexed by $\lfloor n/2 \rfloor$. The index of the last parent is also the number of parents in the heap. So
+  be indexed by $\lfloor n/2 \rfloor +1 -1$. The index of the last parent is also the number of parents in the heap. So
   $n - \lfloor n/2 \rfloor$ or $\lceil n/2 \rceil$ is the number of leaves in a heap. So we can then take a heap of height $h - 1$
   to have $n - \lceil n/2 \rceil$ or $\lfloor n/2 \rfloor$ nodes. Using the given function we have the number of nodes at $h - 1$
-  given by $\lceil n/2^{h+1-1} \rceil = \lceil n/2^{h} \rceil$. Using $n - \lceil n/2 \rceil$ or $\lfloor n/2 \rfloor$ as our
+  given by $\lceil n/2^{h+1-1} \rceil = \lceil n/2^{h} \rceil$. Using $\lfloor n/2 \rfloor$ as our
   value of $n$ in the $h - 1$ tree we have:
   \begin{align*}
     \lceil (\lfloor n/2 \rfloor)/2^{h} \rceil &\le \lceil n/2^{h+1} \rceil \\
