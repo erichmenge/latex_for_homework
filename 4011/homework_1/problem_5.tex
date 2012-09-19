@@ -54,10 +54,10 @@
   \end{minipage}
   \ \\
   \begin{minipage}[b]{0.25\linewidth}
-    $I = \{ r_1, s_4 \}$
+    $I = \{ r_2, s_4 \}$
     \hrule
     $\delta(I,0) = \{ r_2, s_4 \}$ I \\
-    $\delta(I,1) = \{ r_1, s_4 \}$ I
+    $\delta(I,1) = \{ r_2, s_4 \}$ I
   \end{minipage}
 
   \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=3.5cm]
@@ -99,6 +99,52 @@
       (I)
         edge [loop right] node{0,1}(I)
     ;
-  \end{tikzpicture}
+  \end{tikzpicture} \\
+
+  \noindent {\bf Alternative Construction} based on Theorem 1.25 \\
+  $Q = \{ \{ r_1,s_1 \}, \{r_1,s_2\}, \{r_1,s_3\}, \{r_1, s_4\}, \{r_2,s_1\}, \{r_2,s_2\}, \{r_2,s_3\}, \{r_2,s_4\}\}$ \\
+  $\delta((r_1,s_1), 0) = (r_2,s_1)$ \\
+  $\delta((r_1,s_1), 1) = (r_1,s_2)$ \\
+  $\delta((r_1,s_2), 0) = (r_2,s_2)$ \\
+  $\delta((r_1,s_2), 1) = (r_1,s_3)$ \\
+  $\delta((r_1,s_3), 0) = (r_2,s_3)$ \\
+  $\delta((r_1,s_3), 1) = (r_1,s_4)$ \\
+  $\delta((r_1,s_4), 0) = (r_2,s_4)$ \\
+  $\delta((r_1,s_4), 1) = (r_1,s_4)$ \\
+  $\delta((r_2,s_1), 0) = (r_1,s_1)$ \\
+  $\delta((r_2,s_1), 1) = (r_2,s_2)$ \\
+  $\delta((r_2,s_2), 0) = (r_1,s_2)$ \\
+  $\delta((r_2,s_2), 1) = (r_2,s_3)$ \\
+  $\delta((r_2,s_3), 0) = (r_1,s_3)$ \\
+  $\delta((r_2,s_3), 1) = (r_2,s_4)$ \\
+  $\delta((r_2,s_4), x) = (r_1,s_4)$ \\
+  $\delta((r_2,s_4), x) = (r_2,s_4)$ \\
+  $q_0 = \{ r_1, s_1 \}$ \\
+  $F = \{ \{ r_1, s_1 \}, \{ r_1, s_2 \}, \{ r_1, s_3 \}, \{r_1, s_4 \}, \{ s_3, r_1 \}, \{ s_3, r_2 \} \}$ \\
+
+  \noindent {\bf These DFAs are nearly the same.} \\
+  $\{r_1,s_1\} \rightarrow F$ \\
+  $\{r_1,s_2\} \rightarrow B$ \\
+  $\{r_1,s_3\} \rightarrow E$ \\
+  $\{r_1,s_4\} \rightarrow H$ \\
+  $\{r_2,s_1\} \rightarrow C$ \\
+  $\{r_2,s_2\} \rightarrow D$ \\
+  $\{r_2,s_3\} \rightarrow G$ \\
+  $\{r_2,s_4\} \rightarrow I$ \\
+
+  \noindent There is one redundant state. $A = \{ q_0, r_1, s_1 \}$, $F = \{ r_1, s_1 \}$, since $\{ r_1, s_1 \}$ is the start
+  state. \\
+
+  \noindent {\bf Descriptions of States: } \\
+  $A$: Empty String. \\
+  $B$: One 1, even number of 0's. \\
+  $C$: Odd number of zeros, no ones. \\
+  $D$: One 1, odd number of 0's. \\
+  $E$: Two 1's, even number of 0's. \\
+  $F$: No ones, even number of 0's. \\
+  $G$: Two ones, followed by any number of zeros. \\
+  $H$: At least 3 ones, no zeros. \\
+  $I$: Trap, at least 3 ones, at least one zero. \\
+
 \end{problem}
 
