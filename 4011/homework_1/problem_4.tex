@@ -1,0 +1,92 @@
+\begin{problem}{4}\ \\
+\indent $A_1 = \{w|\ w\ \text{contains an even number of 0's\}}$ \\
+\indent $A_2 = \{w|\ w\ \text{contains exactly two 1s\}}$ \\
+
+$A_1$: \\
+\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm]
+  \node[initial,state, accepting] (S)      {};
+  \node[state]         (q1) [right of=S]  {};
+  \path[->]
+    (S)
+      edge [bend left]  node{0}(q1)
+      edge [loop above] node{1}(S)
+    (q1)
+      edge [bend left]  node{0}(S)
+      edge [loop above] node{1}(q1)
+  ;
+\end{tikzpicture} \\
+
+$A_2$: \\
+\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm]
+  \node[initial,state] (q1)      {};
+  \node[state]         (q2) [right of=q1]  {};
+  \node[state, accepting]         (q3) [right of=q2]  {};
+  \node[state]         (q4) [right of=q3]  {};
+  \path[->]
+    (q1)
+      edge node{1}(q2)
+      edge [loop above] node{0}(q1)
+    (q2)
+      edge [loop above] node{0}(q2)
+      edge node{1}(q3)
+    (q3)
+      edge [loop above] node{0}(q3)
+      edge node{1}(q4)
+    (q4)
+      edge [loop above] node{1,0}(q4)
+  ;
+\end{tikzpicture} \\
+Let $N_1 =$ ($Q_1$, $\Sigma$, $\delta_1$, $r_1$, $F_1$) recognize $A_1$ \\
+Let $N_2 =$ ($Q_2$, $\Sigma$, $\delta_2$, $s_1$, $F_2$) recognize $A_2$ \\
+Let $N =$ ($Q$, $\Sigma$, $\delta$, $q_0$, $F$) recognize $N_1 \cup N_2$ \\
+
+\noindent $Q = \{q_0\} \cup Q_1 \cup Q_2 = \{ q_0, r_1, r_2, s_1, s_2, s_3, s_4 \}$ \\
+$F = F_1 \cup F_2 = \{ r_1, s_3 \}$ \\
+
+\noindent $
+  \delta(q,a) =
+  \begin{cases}
+    \delta_1(q,a) & q \in Q_1 \\
+    \delta_2(q,a) & q \in Q_2 \\
+    \{ r_1, s_1 \} & q = q_0 \text{ and } a = \epsilon \\
+    \emptyset & q = q_0 \text{ and } a \ne \epsilon
+  \end{cases}
+$
+\begin{figure}[h!]
+  \centering
+  \caption{Machine N}
+\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2cm]
+  \node[initial, state] (q0){$q_0$};
+  \node[state, accepting] [above left of=q0] (r1){$r_1$};
+  \node[state] [left of=r1] (r2){$r_2$};
+
+  \node[state] [above right of=q0] (s1){$s_1$};
+  \node[state] [right of=s1] (s2){$s_2$};
+  \node[state, accepting] [right of=s2] (s3){$s_3$};
+  \node[state] [right of=s3] (s4){$s_4$};
+  \path[->]
+  (q0)
+    edge [bend right]node{$\epsilon$}(s1)
+    edge [bend left] node [swap] {$\epsilon$}(r1)
+  (r1)
+    edge [bend left] node{0}(r2)
+    edge [loop above] node{1}(r1)
+  (r2)
+    edge [bend left] node{0}(r1)
+    edge [loop above] node{1}(r2)
+
+  (s1)
+    edge [loop above] node{0}(s1)
+    edge node{1}(s2)
+  (s2)
+    edge [loop above] node{0}(s2)
+    edge node{1}(s3)
+  (s3)
+    edge [loop above] node{0}(s3)
+    edge node{1}(s4)
+  (s4)
+    edge [loop above] node{0,1}(s4)
+  ;
+\end{tikzpicture}
+\end{figure}
+\end{problem}
