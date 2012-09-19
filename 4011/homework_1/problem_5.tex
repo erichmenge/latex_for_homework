@@ -1,2 +1,104 @@
 \begin{problem}{5}\ \\
+  Start the construction by tracing the NFA, recording only reachable steps.
+
+  \noindent
+  \ \\
+  \begin{minipage}[b]{0.25\linewidth}
+    $A = \{ q_0, r_1, s_1 \}$
+    \hrule
+    $\delta(A,0) = \{ r_2, s_1 \} $ B \\
+    $\delta(A,1) = \{ r_1, s_2 \} $ C
+  \end{minipage}
+  \begin{minipage}[b]{0.25\linewidth}
+    $B = \{ r_1, s_2 \}$
+    \hrule
+    $\delta(B,0) = \{ r_2, s_2 \}$ D \\
+    $\delta(B,1) = \{ r_1, s_3 \}$ E
+  \end{minipage}
+  \begin{minipage}[b]{0.25\linewidth}
+    $C = \{ r_2, s_1 \}$
+    \hrule
+    $\delta(C,0) = \{ r_1, s_1 \}$ F \\
+    $\delta(C,1) = \{ r_2, s_2 \}$ D
+  \end{minipage}
+  \begin{minipage}[b]{0.25\linewidth}
+    $D = \{ r_2, s_2 \}$
+    \hrule
+    $\delta(D,0) = \{ r_1, s_2 \}$ B \\
+    $\delta(D,1) = \{ r_2, s_3 \}$ G
+  \end{minipage}
+  \ \\
+  \begin{minipage}[b]{0.25\linewidth}
+    $E = \{ r_1, s_3 \}$
+    \hrule
+    $\delta(E,0) = \{ r_2, s_3 \}$ G \\
+    $\delta(E,1) = \{ r_1, s_4 \}$ H
+  \end{minipage}
+  \begin{minipage}[b]{0.25\linewidth}
+    $F = \{ r_1, s_1 \}$
+    \hrule
+    $\delta(F,0) = \{ r_2, s_1 \}$ C \\
+    $\delta(F,1) = \{ r_1, s_2 \}$ B
+  \end{minipage}
+  \begin{minipage}[b]{0.25\linewidth}
+    $G = \{ r_2, s_3 \}$
+    \hrule
+    $\delta(G,0) = \{ r_1, s_3 \}$ G \\
+    $\delta(G,1) = \{ r_2, s_4 \}$ I
+  \end{minipage}
+  \begin{minipage}[b]{0.25\linewidth}
+    $H = \{ r_1, s_4 \}$
+    \hrule
+    $\delta(H,0) = \{ r_2, s_4 \}$ I \\
+    $\delta(H,1) = \{ r_1, s_4 \}$ H
+  \end{minipage}
+  \ \\
+  \begin{minipage}[b]{0.25\linewidth}
+    $I = \{ r_1, s_4 \}$
+    \hrule
+    $\delta(I,0) = \{ r_2, s_4 \}$ I \\
+    $\delta(I,1) = \{ r_1, s_4 \}$ I
+  \end{minipage}
+
+  \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=3.5cm]
+    \node[initial, state]                 (A){A};
+    \node[state] [above left of=A]        (B){B};
+    \node[state] [below right of=A]       (C){C};
+    \node[state] [above right of=A]       (D){D};
+    \node[state, accepting] [above of=B]  (E){E};
+    \node[state] [below left of=A]        (F){F};
+    \node[state] [above of=D]             (G){G};
+    \node[state] [above of=E]             (H){H};
+    \node[state] [above of=G]             (I){I};
+
+    \path[->]
+      (A)
+        edge node{1}(B)
+        edge node{0}(C)
+      (B)
+        edge [bend left]node{0}(D)
+        edge node{1}(E)
+      (C)
+        edge [bend left]node{0}(F)
+        edge node{1}(D)
+      (D)
+        edge node{1}(G)
+        edge [bend left]node{0}(B)
+      (E)
+        edge node{1}(H)
+        edge node{0}(G)
+      (F)
+        edge [bend left]node{0}(C)
+        edge node{1}(B)
+      (G)
+        edge [loop right] node{0}(G)
+        edge node{1}(I)
+      (H)
+        edge node{0}(I)
+        edge [loop above] node{1}(H)
+      (I)
+        edge [loop right] node{0,1}(I)
+    ;
+  \end{tikzpicture}
 \end{problem}
+
