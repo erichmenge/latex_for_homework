@@ -1,2 +1,20 @@
-\begin{problem}{6} Do Exercise 1.25 from the book. \\
+\begin{problem}{6} Exercise 1.25 from the book. \\
+
+\noindent Let an FST defined by 5-tuple $(Q, \sigma, \delta, $q_0$, \tau)$ recognize language $w$ where: \\
+Q is the set of states. \\
+$\sigma$ is the alphabet \\
+$\delta: Q \times \sigma \rightarrow \tau$ \\
+$q_0 \in Q$ is the start state. \\
+and $\tau$ represents the set of possible outputs. \\
+
+\noindent{\bf Computation:} \\
+
+\noindent Let $M = A FST$ and let $w = w_1w_2 \ldots w_n$ be a string where $w_i$ is a member of $\sigma$.
+Then $M$ produces $\tau$ from $w$ if a sequence of states $r_0,r_1 \ldots r_n$ in Q exists, and if:
+\begin{enumerate}
+\item $r_0 = q_0$
+\item $\delta(r_i, w_i + 1) = r_i + 1$ for $i = 0 \ldots n - 1$
+\item $r_1 \ldots r_n \in \tau$
+\end{enumerate}
+
 \end{problem}
