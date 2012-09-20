@@ -1,0 +1,8 @@
+problems =
+
+homework_1.pdf: $(problems)
+  latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" -use-make $<
+
+clean:
+  latexmk -CA
+  rm -f *.pdf
