@@ -1,2 +1,17 @@
-\begin{problem}{7} Do Exercise 1.31 from the book. \\
+\begin{problem}{7} Exercise 1.31 from the book. \\
+
+\noindent A language is regular if it is recognized by some finite automaton. \\
+
+\noindent So for $A$ we have some NFA with $(Q, \Sigma, \delta, q_0, F)$. \\
+
+\noindent We define $A^R$ to be another NFA with 5-tuple $(Q', \Sigma, \delta', q_0', F')$ where: \\
+$Q' = Q$. \\
+$\delta'$ is $\delta$ with all transitions reversed. \\
+$F'$ is the set of start states of $A$. \\
+$q_0'$ is the set of accept states of $A$. \\
+
+\noindent Then the new NFA works the same as the first NFA, only in reverse. \\
+
+\noindent This proves $A^R$ is regular by construction. \\
+
 \end{problem}
