@@ -1,5 +1,6 @@
 \input{../../preamble.tex}
 \input{../class_info.tex}
+\usepackage{listings}
 
 \sethomeworknumber{2}
 
@@ -10,6 +11,26 @@
 \begin{problem}{6.5-7}
   Show how to implement a first-in, first-out queue with a priority queue. Show how to implement a stack with
   a priority queue.
+
+  \begin{solution}
+    A FIFO queue can be implemented with a min-heap. So that the item enqueued would have a key representing
+    the number of items items inserted thus far. So the first item might have a key of 0, the second one would have a key
+    of 1 and so on. \\
+
+    In order to process the FIFO queue one could run {\sl extract-min} and get the first item inserted.
+    Subsequent {\sl extract-min}s would ensure that the queue is read in a first-in, first-out way. \\
+
+    Conversely, a stack is LIFO, or last-in, last-out and could be implemented as a max-heap.
+    Again, the key can be represented by the number of items thus far. So the first item would have a key of 0, the second
+    would have a key of 1, the third a key of 2, and so on. To ``pop'' an item off the stack, one simply need
+    call extract-max. \\
+
+    Max-heap implementations have been covered extensively in class. But we didn't explicitly cover
+    min-heaps. So rather than writing a pseudo-code implementation I wrote it in Ruby (my favorite language) for fun. \\
+
+    \centerline{A Ruby implementation of MinHeap}
+    \lstinputlisting[language=Ruby]{/Users/erichmenge/Development/cse/4041/heaps/min_heap.rb}
+  \end{solution}
 \end{problem}
 
 \begin{problem}{6.5-8}
