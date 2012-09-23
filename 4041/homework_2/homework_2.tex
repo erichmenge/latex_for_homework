@@ -25,11 +25,58 @@
     would have a key of 1, the third a key of 2, and so on. To ``pop'' an item off the stack, one simply need
     call extract-max. \\
 
-    Max-heap implementations have been covered extensively in class. But we didn't explicitly cover
-    min-heaps. So rather than writing a pseudo-code implementation I wrote it in Ruby (my favorite language) for fun. \\
+    I've implemented the Queue and Stack in Ruby rather than Pseudocode, because Ruby is more fun than pseudocode and
+    is as easy to read. Node is a simple class that stores key value pairs and knows how to compare itself to other
+    node objects. \\
 
-    \centerline{A Ruby implementation of MinHeap}
-    \lstinputlisting[language=Ruby]{/Users/erichmenge/Development/cse/4041/lib/heaps/min_heap.rb}
+    \centerline{A Ruby implementation of Queue and Stack}
+    \begin{lstlisting}[language=Ruby]
+      module Heaps
+        class Node
+          include Comparable
+
+          attr_accessor :key
+          attr_accessor :value
+
+          def initialize(key, value)
+            @key = key
+            @value = value
+          end
+
+          def <=>(obj1)
+            key <=> (obj1.respond_to?(:key) ? obj1.key : obj1)
+          end
+        end
+      end
+
+      class Queue
+        def initialize
+          @queue = Heaps::MinHeap.new
+        end
+
+        def enqueue(value)
+          @queue.insert Heaps::Node.new(@queue.size, value)
+        end
+
+        def dequeue
+          @queue.extract_min.value
+        end
+      end
+
+      class Stack
+        def initialize
+          @stack = Heaps::MaxHeap.new
+        end
+
+        def push(value)
+          @stack.insert Heaps::Node.new(@stack.size, value)
+        end
+
+        def pop
+          @stack.extract_max.value
+        end
+      end
+    \end{lstlisting}
   \end{solution}
 \end{problem}
 
