@@ -29,17 +29,43 @@
     min-heaps. So rather than writing a pseudo-code implementation I wrote it in Ruby (my favorite language) for fun. \\
 
     \centerline{A Ruby implementation of MinHeap}
-    \lstinputlisting[language=Ruby]{/Users/erichmenge/Development/cse/4041/heaps/min_heap.rb}
+    \lstinputlisting[language=Ruby]{/Users/erichmenge/Development/cse/4041/lib/heaps/min_heap.rb}
   \end{solution}
 \end{problem}
 
 \begin{problem}{6.5-8}
   The operation HEAP-DELETE(A,i) deletes the item in node i from heap A. Give an implementation of HEAP-DELETE that runs
   in $O(lgn)$ time for an n-element max-heap.
+  \begin{solution}
+    \begin{figure}[here]
+      \caption{Pseudocode representation of heap-delete}
+      \centering
+      \begin{lstlisting}
+        heap-delete(A,i)
+          exchange A[i] with A[A.heap-size]
+          A.heap-size = A.heap-size - 1
+          heapify(A,i)
+      \end{lstlisting}
+    \end{figure}
+    \begin{proof}
+      This function moves the item at the bottom of the heap into the position where the item to be deleted is.
+      This causes the deletion of the specified item and also breaks the root. The item that was at the bottom now needs
+      to move down the heap until it is in the proper position. \\
+
+      Because exchanging two values and decrementing the size of the heap runs in constant time, the only thing that is
+      left to consider for run-time is heapify(A, i). \\
+
+      Heapify starts at the position of the broken root down, comparing itself with left and right children
+      and swaps if necessary to repair the broken root. Every swap potentially breaks the root below it so it follows this
+      path down recursively. In the worst case scenario, the root is broken at the first position. In this case it would
+      have to move from the top of the heap all the way to the bottom. So it is $O(h)$. We know there are $2^h$ nodes in a
+      heap. So $n = 2^h$. Solving for $h$ we have $ h = lg n$ so $O(h) = O(lg n)$.
+    \end{proof}
+  \end{solution}
 \end{problem}
 
 \begin{problem}{6.5-9}
-  Give an $O(nlgk)$-time algorithm to merge k sorted lists into one sorted list, where n is the total number of elements in
+  Give an $O(n \text{ lg }k)$-time algorithm to merge k sorted lists into one sorted list, where n is the total number of elements in
   all the input lists. (Hint: Use a min- heap for k-way merging.)
 \end{problem}
 
