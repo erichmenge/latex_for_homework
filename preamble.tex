@@ -2,14 +2,27 @@
 
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amsthm,amssymb}
+\usepackage{fancyhdr}
+\usepackage[small,compact]{titlesec}
+
+\lhead{Erich Menge}
+\chead{\classnameandsection}
+\rhead{\homeworktitle}
+
+\pagestyle{fancy}
+
+\newcommand{\sethomeworknumber}[1]{
+  \newcommand{\homeworktitle}{Homework #1}
+}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
-\newcommand{\homeworkheader}[2]{
-  \title{Homework #1}
+\newcommand{\homeworkheader}[1]{
+  \title{\vspace{2.75in}\homeworktitle}
   \author{Erich Menge (X.500: menge053, Student ID: 4624713) \\
-  #2}
+  #1}
   \maketitle
+  \newpage
 }
 
 \newenvironment{problem}[1]{
@@ -18,3 +31,4 @@
 }{
   \ignorespacesafterend
 }
+
