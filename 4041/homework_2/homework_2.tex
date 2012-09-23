@@ -82,7 +82,7 @@
 
 \begin{problem}{6.5-8}
   The operation HEAP-DELETE(A,i) deletes the item in node i from heap A. Give an implementation of HEAP-DELETE that runs
-  in $O(lgn)$ time for an n-element max-heap.
+  in $O(\lg n)$ time for an n-element max-heap.
   \begin{solution}
     \begin{figure}[here]
       \caption{Pseudocode representation of heap-delete}
@@ -105,8 +105,8 @@
       Heapify starts at the position of the broken root down, comparing itself with left and right children
       and swaps if necessary to repair the broken root. Every swap potentially breaks the root below it so it follows this
       path down recursively. In the worst case scenario, the root is broken at the first position. In this case it would
-      have to move from the top of the heap all the way to the bottom. So it is $O(h)$. We know there are $2^h$ nodes in a
-      heap. So $n = 2^h$. Solving for $h$ we have $ h = lg n$ so $O(h) = O(lg n)$.
+      have to move from the top of the heap all the way to the bottom. So it is $O(h)$. We want a function of $n$.
+      $2^h \le n < 2^{h+1}$ so it is $O(\lg n)$, disregarding the floor because its affect is negligeable.
     \end{proof}
   \end{solution}
 \end{problem}
