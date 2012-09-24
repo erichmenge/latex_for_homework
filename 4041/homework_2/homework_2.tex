@@ -113,7 +113,40 @@
 
 \begin{problem}{6.5-9}
   Give an $O(n \text{ lg }k)$-time algorithm to merge k sorted lists into one sorted list, where n is the total number of elements in
-  all the input lists. (Hint: Use a min- heap for k-way merging.)
+  all the input lists. (Hint: Use a min-heap for k-way merging.)
+
+  \begin{solution}
+    Luckily the lists are already sorted. So we can take the first (minimum) element from each $k$
+    lists and put them in     a new list. We can then run build-heap on that new list which is $O(k)$. We then extract the
+    root of the heap which is the     minimum and add it to our final merged list. In its place we put the next smallest
+    number from the list     in which it came and run heapify on the root node which is $O(\lg k)$. We have to do this for
+    all $n$ elements, so it     is $n$ extract-min operations which gives $O(n \lg k)$. So we end up with $O(k + n \lg k)$.
+    This simplifies to $O(n \lg k)$ because the addition of $k$ is insignificant. \\
+
+    \centerline{Algorithm to merge k sorted lists}
+    \begin{lstlisting}
+      k-merge(*lists)
+        merged_sorted_list = []
+
+        data_for_heap = []
+        for list in lists do
+          data_for_heap << list.first_element
+          list.delete_first_element
+
+        data_for_heap.build_heap
+
+        while min = heap[1]
+          merged_sorted_list << min
+          if min.originating_list.size > 0
+            heap[1] = min.originating_list.first_element
+            min.originating_list.delete_first_element
+            heap.heapify(1)
+          else
+            # No more in originating list
+            heap.extract_min
+        return merged_sorted_list
+    \end{lstlisting}
+  \end{solution}
 \end{problem}
 
 \begin{problem}{2.3-2}
