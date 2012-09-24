@@ -209,6 +209,17 @@
   We can express insertion sort as a recursive procedure as follows. In order to sort $A[1\ldots n]$ we recursively sort
   $A[1\ldots n] - 1 $ and then insert $A[n]$ into the sorted array $A[1\ldots n] - 1 $.
   Write a recurrence for the running time of this recursive version of insertion sort.
+  \begin{solution}
+    We need to recursively sort $n - 1$ elements, which gives a runtime of $T(n - 1)$.
+    We also need to insert $n$ elements, so that is $\Theta(n)$. Our terminating
+    condition is when there is one element $n = 1$ where the sort run-time would be 1. So we have:
+    \[
+      T(n) = \begin{cases}
+      1 & n = 1 \\
+      T(n-1) + \Theta(n) & n > 1
+      \end{cases}
+    \]
+  \end{solution}
 \end{problem}
 
 \end{document}
