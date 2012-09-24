@@ -152,6 +152,35 @@
 \begin{problem}{2.3-2}
   Rewrite the MERGE procedure so that it does not use sentinels, instead stopping once either array L or R has had all its
   elements copied back to A and then copying the remainder of the other array back into A.
+
+  \begin{solution}
+    \begin{lstlisting}[mathescape]
+      MERGE(A, p, q, r)
+        $n_1$ = q - p + 1
+        $n_2$ = r - q
+        Let L[1..$n_1$] be the left array
+        Let R[1..$n_2$] be the right array
+        for i = 1 to $n_1$
+          L[i] = A[p + i - 1]
+        for j = 1 to $n_2$
+          R[j] = A[q + j]
+        i = j = 1
+        k = p
+        while i <= $n_1$ and j <= $n_2$ do
+          if L[i] $\le$ R[j]
+            A[k] = L[i]
+            k++
+            i++
+          else
+            A[k] = R[j]
+            k++
+            j++
+        # One or both of the arrays are now empty
+        append L[i..$n_1$] to A starting at A[k]
+        k = k + $n_1$ - i
+        append R[j..$n_2$] to A starting at A[k]
+    \end{lstlisting}
+  \end{solution}
 \end{problem}
 
 \begin{problem}{2.3-3}
