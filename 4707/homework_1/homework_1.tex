@@ -7,7 +7,39 @@
 \begin{document}
 
 \begin{problem}{1.6}
+
+  Scrooge McNugget wants to store information (names, addresses, descriptions of embarrassing moments, etc.) about the
+  many ducks on his payroll. Not surprisingly, the volume of data compels him to buy a database system. To save money,
+  he wants to buy one with the fewest possible features, and he plans to run it as a stand-alone application on his PC
+  clone. Of course, Scrooge does not plan to share his list with anyone. Indicate which of the following DBMS features
+  Scrooge should pay for; in each case, also indicate why Scrooge should (or should not) pay for that feature in the
+  system he buys.
+
+  \begin{enumerate}
+    \item A security facility.
+    \item Concurrency control.
+    \item Crash recovery.
+    \item A view mechanism.
+    \item A query language.
+  \end{enumerate}
+
   \begin{solution}
+    \begin{enumerate}
+      \item Yes. He's putting it on his PC ``clone''. Because it is standalone and no one else needs to access it
+      it should not accept network connections and should be located in a physically secure location. Physical access
+      is total access.
+
+      \item No. Since it is single-user there is no need for concurrency.
+
+      \item Yes. Despite his frugality he is storing very valuable information (embarrassing moments) which he probably
+      can't afford to lose. It would be good to make sure that in the event of a power outage his data isn't corrupted.
+
+      \item Yes. While not strictly necessary, it may make Scrooge's life easier to create views. It doesn't specify
+      if he will be using a program or accessing his database directly. If he is accessing it directly it may make sense
+      for him to have views so that his work environment isn't as cluttered with less frequently used columns for instance.
+
+      \item Yes. He will need to use the query language to interact with his database.
+    \end{enumerate}
   \end{solution}
 \end{problem}
 \begin{problem}{2.2}
