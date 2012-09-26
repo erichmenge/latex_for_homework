@@ -1,8 +1,46 @@
 \input{../../preamble.tex}
 \input{../class_info.tex}
+\usepackage{graphicx}
+\usepackage{subfigure}
+
+\sethomeworknumber{2}
 
 \begin{document}
+\homeworkheader{\classnameandsection}
 
-\homeworkheader{2}{\classnameandsection}
+\begin{problem}{1}
+  Do Exercise 1.28 parts c from the book.
+\end{problem}
+
+\begin{problem}{2}
+  Do Exercise 1.21 part b from the book.
+\end{problem}
+
+\begin{problem}{3}
+  Do Problem 1.41 from the book. The most obvious way to solve this problem is by is by showing how to construct a finite automaton accepting the perfect shuffle of A and B from dfas accepting A and B.
+\end{problem}
+
+\begin{problem}{4}
+  Do Problem 1.46 parts c from the book.
+\end{problem}
+
+\begin{problem}{5}
+  Do Problem 1.47 from the book. You may find it useful to use the fact that regular languages are closed under complementation.
+\end{problem}
+
+\begin{problem}{6}
+  Let $\Sigma$ = \{0,1\}
+  \begin{enumerate}
+    \item Let A = $\{ 0^ku0^k | k \ge 1$ and $u \in \Sigma^* \}$ Show that A is regular \\
+    \item Let B = $\{ 0^k1u0^k | k \ge 1$ and $u \in \Sigma^* \}$. Show that B is not regular.
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}{7}
+  Define the avoids operation on languages A and B to be \\
+  \newline\indent avoids(A,B) = $\{ w | w \in$ A and $w$ does not contain any string in B as a substring $\}$ \\
+  \newline Prove that the class of regular languages is closed under the avoids operation.
+\end{problem}
+
 
 \end{document}
