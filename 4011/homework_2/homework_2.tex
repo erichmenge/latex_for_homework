@@ -81,6 +81,32 @@
 
 \begin{problem}{3}
   Do Problem 1.41 from the book. The most obvious way to solve this problem is by is by showing how to construct a finite automaton accepting the perfect shuffle of A and B from dfas accepting A and B.
+
+  \begin{solution}
+    Let $A = (Q_A, \Sigma_A, \delta_A, q_a, F_A)$ \\
+    Let $B = (Q_B, \Sigma_B, \delta_A, q_b, F_B)$ \\
+
+    \noindent Then let $M$ be some machine recognizing the perfect shuffle of $A$ and $B$ where $M$ is defined as a
+    5 tuple $(Q, \Sigma, \delta, q, F)$ \\
+
+    \begin{proof}
+      If A is regular and B is regular then M can be proved regular by construction: \\
+
+          \noindent $Q = Q_A \times Q_B \times \{ A, B \}$ We have combinations of $Q_A$ and $Q_B$ and symbols representing each machine
+          because we will need to ``cycle'' back and forth between the sets of states an even amount of times. \\
+
+          \noindent $\Sigma = \Sigma_A \cup \Sigma_B$ \\
+
+          \noindent $\delta = \delta((Q_{Ai}, Q_{Bi}, A), a) = (\delta_A(Q_{Ai}, a), Q_{Bi}, B)$ and $\delta((Q_{Ai}, Q_{Bi}, B), b) = (Q_{Ai}, \delta_B(q_{bi}, b), A)$ so that the letters of A map to the letters of B, causing a cycling back and forth between the states of each machine. \\
+
+          \noindent $q = (q_a, q_b, A)$ so that the start state requires the first letter to be from machine A. \\
+
+          \noindent $F = F_A \times F_B \times \{ A \}$ so that we end on a state from machine A as we started on it, this means that we have completed an even cycle which is required by definition.
+    \end{proof}
+
+    \noindent So this DFA transitions us back and forth between states from A and states from B in order, requiring an
+    even cycle so that we start on A and end on A. A perfect shuffle.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{4}
