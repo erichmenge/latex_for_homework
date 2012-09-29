@@ -1,7 +1,10 @@
 \input{../../preamble.tex}
 \input{../class_info.tex}
+
+\usepackage{graphicx}
 \usepackage{pgf}
 \usepackage{tikz}
+\usepackage{subfigure}
 \usetikzlibrary{arrows,automata}
 
 \sethomeworknumber{2}
@@ -50,11 +53,31 @@
     \end{tikzpicture}
 
   \end{solution}
-\end{problem}
+\end{problem} \newpage
 
 \begin{problem}{2}
   Do Exercise 1.21 part b from the book.
-\end{problem}
+
+  \begin{solution}
+    \begin{figure}[H]
+      \centering
+      \caption{Convert NFA to regular expression}
+      \subfigure[Step 1 GNFA]{
+        \includegraphics[scale=.6]{1_21_1.eps}
+      }
+      \subfigure[Step 2 - Remove a state]{
+        \includegraphics[scale=.6]{1_21_2.eps}
+      }
+      \subfigure[Step 3 - Remove a state]{
+        \includegraphics[scale=.6]{1_21_3.eps}
+      }
+      \subfigure[Step 4 - Only 2 states left]{
+        \includegraphics[scale=.6]{1_21_4.eps}
+      }
+    \end{figure}
+  So the resulting regular expression is $ε ∪ (a ∪ b)((a ∪ bb) ∪ ba(a ∪ b)^*(b ∪ ba))$.
+  \end{solution}
+\end{problem} \newpage
 
 \begin{problem}{3}
   Do Problem 1.41 from the book. The most obvious way to solve this problem is by is by showing how to construct a finite automaton accepting the perfect shuffle of A and B from dfas accepting A and B.
