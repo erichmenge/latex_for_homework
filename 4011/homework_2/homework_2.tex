@@ -118,11 +118,11 @@
       Let $S = 0^p10^p = xy^iz$ be some string that is a palindrome. \\
       \begin{align*}
         x &= 0^p \\
-        y &= 1 \\
+        y &= 0^j \\
         z &= 0^p \\
         |xy| &\le p, |y| > 0
       \end{align*}
-      By the Pumping Lemma $0^{p+1}10^p$ should also be in the language of $\overline{C}$, but it violates the definition of
+      By the Pumping Lemma $0^{p+j}10^p$ should also be in the language of $\overline{C}$, but it violates the definition of
       $\overline{C}$. Therefore $\overline{C}$ must not be regular and by closure properties $C$ is not regular either.
     \end{proof}
   \end{solution}
