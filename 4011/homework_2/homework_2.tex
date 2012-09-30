@@ -107,10 +107,25 @@
     \noindent So this DFA transitions us back and forth between states from A and states from B in order, requiring an
     even cycle so that we start on A and end on A. A perfect shuffle.
   \end{solution}
-\end{problem}
+\end{problem} \newpage
 
 \begin{problem}{4}
   Do Problem 1.46 parts c from the book.
+  \begin{solution}
+    If $C = \{ w|w \in \{ 0,1 \}^* \text{ is not in a palindrome }\}$ is regular then its complement $\overline{C}$, which contains
+    all strings that \underline{are} palindroms, is also regular using closure properties.
+    \begin{proof}
+      Let $S = 0^p10^p = xyz$ be some string that is a palindrome. \\
+      \begin{align*}
+        x &= 0^p \\
+        y &= 1 \\
+        z &= 0^p \\
+        |xy| &\le p, |y| > 0
+      \end{align*}
+      By the Pumping Lemma $0^{p+j}10^p$ should also be in the language of $\overline{C}$, but it violates the definition of
+      $\overline{C}$. Therefore $\overline{C}$ must not be regular and by closure properties $C$ is not regular either.
+    \end{proof}
+  \end{solution}
 \end{problem}
 
 \begin{problem}{5}
