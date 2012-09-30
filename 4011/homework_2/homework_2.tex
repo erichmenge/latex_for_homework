@@ -129,8 +129,23 @@
 \end{problem}
 
 \begin{problem}{5}
-  Do Problem 1.47 from the book. You may find it useful to use the fact that regular languages are closed under complementation.
-\end{problem}
+  Do Problem 1.47 from the book. You may find it useful to use the fact that regular languages are closed under
+  complementation.
+  \begin{solution}
+    \begin{proof}
+      Let $S = 1^p\#1^{p+1}\#1^{p+2}\ldots\#1^{n} = xy^iz$
+      \begin{align*}
+        x &= 1^p \\
+        y &= 1^2 \\
+        z &= \#1^{p + 1}\#1^{p + 2}\ldots\#1^{n} \\
+        |xy| &\le p, |y| > 0
+      \end{align*}
+      By the Pumping Lemma $1^{p+1}\#1^{p+1}\ldots$ should also be in the language. But this violates the definition
+      that states that the lanuage doesn't contain strings with the same number of 1's between hash marks. Therefore Y
+      is not regular by contradiction.
+    \end{proof}
+  \end{solution}
+\end{problem} \newpage
 
 \begin{problem}{6}
   Let $\Sigma$ = \{0,1\}
