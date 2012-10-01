@@ -92,16 +92,16 @@
     \begin{proof}
       If A is regular and B is regular then M can be proved regular by construction: \\
 
-          \noindent $Q = Q_A \times Q_B \times \{ A, B \}$ We have combinations of $Q_A$ and $Q_B$ and symbols representing each machine
+          \noindent $Q = Q_A \times Q_B \times \{ M_A, M_B \}$ We have combinations of $Q_A$ and $Q_B$ and symbols representing each machine
           because we will need to ``cycle'' back and forth between the sets of states an even amount of times. \\
 
           \noindent $\Sigma = \Sigma_A \cup \Sigma_B$ \\
 
-          \noindent $\delta = \delta((Q_{Ai}, Q_{Bi}, A), a) = (\delta_A(Q_{Ai}, a), Q_{Bi}, B)$ and $\delta((Q_{Ai}, Q_{Bi}, B), b) = (Q_{Ai}, \delta_B(q_{bi}, b), A)$ so that the letters of A map to the letters of B, and vice versa, causing a cycling back and forth between the states of each machine. \\
+          \noindent $\delta = \delta((Q_{Ai}, Q_{Bi}, M_A), a) = (\delta_A(Q_{Ai}, a), Q_{Bi}, M_B)$ and $\delta((Q_{Ai}, Q_{Bi}, M_B), b) = (Q_{Ai}, \delta_B(q_{bi}, b), M_A)$ so that the letters of A map to the letters of B, and vice versa, causing a cycling back and forth between the states of each machine. \\
 
-          \noindent $q = (q_a, q_b, A)$ so that the start state requires the first letter to be from machine A. \\
+          \noindent $q = (q_a, q_b, M_A)$ so that the start state requires the first letter to be from machine A. \\
 
-          \noindent $F = F_A \times F_B \times \{ A \}$ so that we end on a state from machine A as we started on it, this means that we have completed an even cycle which is required by definition.
+          \noindent $F = F_A \times F_B \times \{ M_A \}$ so that we end on a state from machine A as we started on it, this means that we have completed an even cycle which is required by definition.
     \end{proof}
 
     \noindent So this DFA transitions us back and forth between states from A and states from B in order, requiring an
