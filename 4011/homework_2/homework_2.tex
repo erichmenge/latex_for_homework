@@ -171,6 +171,12 @@
   Define the avoids operation on languages A and B to be \\
   \newline\indent avoids(A,B) = $\{ w | w \in$ A and $w$ does not contain any string in B as a substring $\}$ \\
   \newline Prove that the class of regular languages is closed under the avoids operation.
+\begin{solution}
+  Let $C = \overline{B}$ which is a language with no strings in B. Then we can create a machine which is $A \cap C$
+  which is the language of A with all strings in A with substrings in B removed. This is the result created by avoids.
+  The language is closed under the complement operation, and is closed under the intersection operator, so therefore the
+  language is closed under the avoids operation.
+\end{solution}
 \end{problem}
 
 
