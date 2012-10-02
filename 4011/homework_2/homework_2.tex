@@ -152,8 +152,8 @@
     \item Let B = $\{ 0^k1u0^k | k \ge 1$ and $u \in \Sigma^* \}$. Show that B is not regular.
   \end{enumerate}
   \begin{solution}
-    1. To recognize A we can think about A more simply. It starts with a 0 and ends with a 0 and may or may not have a
-       between these 0's. So we can use a regular expression $0^+\Sigma^*0^+$. Because $u$ is $\Sigma^*$ it will recognize any additional 0's so that the left and right side has a balaneced amount of 0s.
+    1. To recognize A we can think about A more simply. It starts with a 0 and ends with a 0 and may or may not have a 1
+       between these 0's. So we can use a regular expression $0^+\Sigma^*0^+$. Because $u$ is $\Sigma^*$ it will recognize any additional 0's so that the left and right side has a balanced amount of 0s.
     \vspace{12pt} \\
     2. We can't do the same thing as we did in part one because a 1 separates the first set of 0's from $\Sigma^*$. We can use the pumping lemma to solve this problem. We'll assume that B is regular and prove it is not by contradiction. \\
     Let $S = 0^p 1u 0^p = xy^iz$
