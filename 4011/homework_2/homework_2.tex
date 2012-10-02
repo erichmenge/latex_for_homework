@@ -151,6 +151,20 @@
     \item Let A = $\{ 0^ku0^k | k \ge 1$ and $u \in \Sigma^* \}$. Show that A is regular. \\
     \item Let B = $\{ 0^k1u0^k | k \ge 1$ and $u \in \Sigma^* \}$. Show that B is not regular.
   \end{enumerate}
+  \begin{solution}
+    1. To recognize A we can think about A more simply. It starts with a 0 and ends with a 0 and may or may not have a
+       between these 0's. So we can use a regular expression $0^+\Sigma^*0^+$. Because $u$ is $\Sigma^*$ it will recognize any additional 0's so that the left and right side has a balaneced amount of 0s.
+    \vspace{12pt} \\
+    2. We can't do the same thing as we did in part one because a 1 separates the first set of 0's from $\Sigma^*$. We can use the pumping lemma to solve this problem. We'll assume that B is regular and prove it is not by contradiction. \\
+    Let $S = 0^p 1u 0^p = xy^iz$
+    \begin{align*}
+      x &= 0^p \\
+      y &= 0^{p + j} \\
+      |xy| &\le p, |y| \ge 0
+     \end{align*}
+    Then $0^{p+j} 1u 0^p$ should be regular as well. But in this case the 0's are unbalanced, violating the definition
+    of the language. So the language must not be regular.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{7}
