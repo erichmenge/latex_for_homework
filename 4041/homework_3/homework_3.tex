@@ -41,16 +41,16 @@
     An upper bound would be to replace $k$ with $n$ in the summation as follows:
     \vspace{12pt}
 
-    $\sum\limits_{k=1}^n \lg(n)$ which is guaranteed to be larger than $\lg(n!)$
+    $\sum\limits_{k=1}^n \lg(n) = n \lg n$ which is guaranteed to be larger than $\lg(n!)$
     \vspace{12pt}
 
-    \noindent To get a lower bound we can replace $k$ with $n/2$:
+    \noindent To get a lower bound we can replace $k$ with $k/2$:
     \vspace{12pt}
 
-    $\sum\limits_{k=1}^n \lg(n/2)$ \\
+    $\sum\limits_{k=1}^n \lg(k/2)$ \\
     \vspace{12pt}
 
-    \noindent So $\sum\limits_{k=1}^n \lg(n/2)$ $<$ $\lg(n!)$ $<$ $\sum\limits_{k=1}^n \lg(n)$.
+    \noindent So $\sum\limits_{k=1}^n \lg(k/2)$ $\le$ $\lg(n!)$ $\le$ $\sum\limits_{k=1}^n \lg(n)$.
   \end{solution}
 \end{problem} \newpage
 
@@ -86,6 +86,7 @@
         &= \Omega(n\lg(n) - n) \\
         &= \Omega(n\lg(n))
       \end{align*}
+      Because of the properties of logarithms we can see that there is no linear run-time for fractional inputs listed.
   \end{solution}
 \end{problem} \newpage
 
