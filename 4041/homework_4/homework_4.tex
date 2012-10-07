@@ -23,6 +23,20 @@
 \begin{problem}{9.3-3}
   Show how quicksort can be made to run in $O(n \lg n)$ time in the worst case, assuming that all elements are
   distinct.
+  \begin{solution}
+    From chapter 7.2 we know that the best-case of quick-sort is $\Theta(n \lg n)$ when partitioned evenly from the
+    recurrence $T(n) = 2T(n/2) + \Theta(n)$. So in order to build a quick-sort that runs in $O(n \lg n)$ time we need to
+    ensure the partitions are split evenly.
+
+    Since the select algorithm runs in worst case linear time $O(n)$, using that to find the median for use in
+    partitionioning instead of the method in chapter 7 will replace $\Theta(n)$ with $O(n)$ giving the recurrence $T(n)
+    = 2T(n/2) + O(n) = O(n \lg n)$.
+    \begin{figure}[H]
+      \centering
+      \caption{C implementation of quicksort with select}
+      \lstinputlisting{problem_2.c}
+    \end{figure}
+  \end{solution}
 \end{problem}
 
 \begin{problem}{9.3-5}
