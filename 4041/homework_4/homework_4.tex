@@ -42,6 +42,15 @@
 \begin{problem}{9.3-5}
   Suppose that you have a ``black-box'' worst-case linear-time median subroutine. Give a simple, linear-time algorithm
   that solves the selection problem for an arbitrary order statistic.
+  \begin{solution}
+    \begin{figure}[H]
+      \centering
+      \caption{C++ Implementation of linear-time select}
+      \lstinputlisting{problem_9_3_5.cpp}
+    \end{figure}
+    Since the partition algorithm from prior chapters is $O(n)$ and the ``black-box'' median operation is $O(n)$, and
+    the select algorithm runs in linear time the total runtime is $O(n)$.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{9.3-8}
@@ -54,7 +63,7 @@
   \begin{solution}
     \begin{figure}[H]
       \centering
-      \caption{C++ find-set}
+      \caption{C++ iterative find-set}
       \lstinputlisting{problem_21_3_2.cpp}
     \end{figure}
   \end{solution}
