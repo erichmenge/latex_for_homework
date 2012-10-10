@@ -54,8 +54,20 @@
 \end{problem}
 
 \begin{problem}{9.3-8}
-  Let $X[1\ldots n]$ and $Y[1\ldots n]$ be two arrays, each containing $n$ numbers already in sorted order. Give an $O(\lg
-  n)$-time algorithm to find the median of all $2n$ elements in arrays $X$ and $Y$.
+  Let $X[1\ldots n]$ and $Y[1\ldots n]$ be two arrays, each containing $n$ numbers already in sorted order. Give an
+  $O(\lg n)$-time algorithm to find the median of all $2n$ elements in arrays $X$ and $Y$.
+  \begin{solution}
+    To get $O(\lg n)$ we need to cut the data set in (approximately) half each time through the code. Below is a Ruby
+    implementation. The median of each list compared. Since the lists are in order, this is simple arithmetic and takes
+    constant time. Then we drop half of each list, the small values from one, the large values from the other. These
+    operations are all done in constant time. Finally we recurse passing our new halved lists until we are left with a
+    final two to compare. One in each list. Since the size of the data set is halved each time, it is $O(\lg n)$.
+    \begin{figure}[H]
+      \centering
+      \caption{A Ruby Implementation}
+      \lstinputlisting{problem_9_3_8.rb}
+    \end{figure}
+  \end{solution}
 \end{problem}
 
 \begin{problem}{21.3-2}
