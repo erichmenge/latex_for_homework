@@ -84,6 +84,12 @@
 \begin{problem}{21.3-3}
   Give a sequence of $m$ MAKE-SET, UNION, and FIND-SET operations, $n$ of which are MAKE-SET operations, that takes
   $\Omega(m \lg n)$ time when we use union by rank only.
+  \begin{solution}
+    For MAKE-SET we have $n$ operations to make each single item set. We make binary trees out of the nodes using UNION
+    with an $n-1$ operations. So for the remaining FIND-SET operations we need $(m - n - (n - 1)) = m -2n + 1$
+    operations. Since the height of the tree is $\lfloor \lg(n) \rfloor$ we have $(m - 2n + 1)\lg(n)$. Where $m$ is
+    sufficiently large $m - 2n + 1 = \Omega(m\lg(n))$ for $m \ge 3n$.
+  \end{solution}
 \end{problem}
 
 \end{document}
