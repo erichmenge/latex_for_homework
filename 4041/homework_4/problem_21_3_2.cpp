@@ -1,4 +1,5 @@
-int DisjointSets::iterative_findset(int i) {
+int MyDisjointSets::iterative_findset(int i) {
+  // p is the array of parents
   int original_i = i;
 
   while(p[i] != i)
