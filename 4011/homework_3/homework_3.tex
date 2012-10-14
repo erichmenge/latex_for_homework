@@ -6,4 +6,22 @@
 \begin{document}
 \homeworkheader{\classnameandsection}
 
+\begin{problem}{1}
+  a. $\{w \in \{a,b\}^*\ |\ \text{w has twice as many bs as as} \}$
+  \br
+  b. Balanced parentheses and square brackets. Thus, ()(), [][] and (([])[()]) would be legal expressions of this
+     language but ([)] and [(()] would not.
+  \br
+  c.
+  \begin{solution}
+    a. At first I was tempted to do something like $S \rightarrow bab | bba | abb | A | \epsilon$ but that wouldn't
+    allow for long chains such as $aabaabbbbbbb$. \\ So instead it should be $S \rightarrow bSaSb | bSbSa |
+    aSbSb|\epsilon$. Which is much like above except it separates each character with $S$ to allow enough flexibility
+    for the $\Sigma^*$ requirement.
+    \br
+    b. $S \rightarrow (S)\ |\ [S]\ |\ \epsilon$
+    \br
+    c.
+  \end{solution}
+\end{problem}
 \end{document}
