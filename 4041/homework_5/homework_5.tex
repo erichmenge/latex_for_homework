@@ -8,4 +8,37 @@
 
 \homeworkheader{\classnameandsection}
 
+\begin{problem}{21.3-1}
+  Redo Exercise 21.2-2 using a disjoint-set forest with union by rank and path compression.
+\end{problem}
+
+\begin{problem}{21.3-4}
+  Suppose that we wish to add the operation PRINT-SET(x), which is given a node x and prints all the members of x’s set,
+  in any order. Show how we can add just a single attribute to each node in a disjoint-set forest so that PRINT-SET(x)
+  takes time linear in the number of members of x’s set and the asymptotic running times of the other operations are
+  unchanged. Assume that we can print each member of the set in O(1) time.
+\end{problem}
+
+\begin{problem}{15.2-2}
+  Give a recursive algorithm MATRIX-CHAIN-MULTIPLY(A,s,i,j) that actually performs the optimal matrix-chain
+  multiplication, given the sequence of matrices $(A1, A2, \ldots, A_n)$, the $s$ table computed by MATRIX-CHAIN-ORDER, and
+  the indices i and j. (The initial call would be MATRIX-CHAIN-MULTIPLY(A,s,1,n).)
+\end{problem}
+
+\begin{problem}{15.2-4}
+  Describe the subproblem graph for matrix-chain multiplication with an input chain of length $n$. How many vertices
+  does it have? How many edges does it have, and which edges are they?
+\end{problem}
+
+\begin{problem}{15.3-2}
+  Draw the recursion tree for the MERGE-SORT procedure from Section 2.3.1 on an array of 16 elements. Explain why
+  memoization fails to speed up a good divide-and-conquer algorithm such as MERGE-SORT.
+\end{problem}
+
+\begin{problem}{15.3-3}
+  Consider a variant of the matrix-chain multiplication problem in which the goal is to parenthesize the sequence of
+  matrices so as to maximize, rather than minimize, the number of scalar multiplications. Does this problem exhibit
+  optimal substructure?
+\end{problem}
+
 \end{document}
