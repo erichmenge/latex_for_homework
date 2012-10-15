@@ -1,6 +1,7 @@
 \input{../../preamble.tex}
 \input{../class_info.tex}
 \usepackage{graphicx}
+\usepackage{listings}
 
 \sethomeworknumber{5}
 
@@ -47,6 +48,19 @@
   Give a recursive algorithm MATRIX-CHAIN-MULTIPLY(A,s,i,j) that actually performs the optimal matrix-chain
   multiplication, given the sequence of matrices $(A1, A2, \ldots, A_n)$, the $s$ table computed by MATRIX-CHAIN-ORDER, and
   the indices i and j. (The initial call would be MATRIX-CHAIN-MULTIPLY(A,s,1,n).)
+  \begin{solution}
+    \begin{lstlisting}
+      matrix_chain_multiply(a[], s[], i, j)
+        if i==j
+          return a[i]
+        else
+          return matrix_multiply(
+            matrix_chain_multiply(a, s, i, s[i][j]),
+            matrix_chain_multiply(a, s, s[i][j] + 1, j)
+          )
+        end
+    \end{lstlisting}
+  \end{solution}
 \end{problem}
 
 \begin{problem}{15.2-4}
