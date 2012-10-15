@@ -88,6 +88,12 @@
   Consider a variant of the matrix-chain multiplication problem in which the goal is to parenthesize the sequence of
   matrices so as to maximize, rather than minimize, the number of scalar multiplications. Does this problem exhibit
   optimal substructure?
+  \begin{solution}
+    Yes. This can be done the same way as the minimization. The matrices would still be grouped $(A_i \ldots A_k)(A_{k +
+    1} \ldots A_j)$ only this time we would take $c_{i,j} = max(c_{i,k} + c_{k+1,j} + p_{i - 1}p_kp_j)$. Then the same
+    tables as before could be created to store the maximum cost of each sub-problem. Therefore each sub problem is
+    optimal.
+  \end{solution}
 \end{problem}
 
 \end{document}
