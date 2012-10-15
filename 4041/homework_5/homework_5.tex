@@ -1,6 +1,6 @@
 \input{../../preamble.tex}
 \input{../class_info.tex}
-\usepackage{listings}
+\usepackage{graphicx}
 
 \sethomeworknumber{5}
 
@@ -10,12 +10,36 @@
 
 \begin{problem}{21.3-1}
   Redo Exercise 21.2-2 using a disjoint-set forest with union by rank and path compression.
+  \begin{solution}
+    \begin{figure}[H]
+      \centering
+      \caption{Structure for disjoint-set forest with path compression after first set of unions}
+      \includegraphics[scale=.5]{21_3_1_1.eps}
+    \end{figure}
+    \begin{figure}[H]
+      \centering
+      \caption{Structure for disjoint-set forest with path compression after second set of unions}
+      \includegraphics[scale=.5]{21_3_1_2.eps}
+    \end{figure}
+    \begin{figure}[H]
+      \centering
+      \caption{Structure for disjoint-set forest with path compression after final set of unions}
+      \includegraphics[scale=.5]{21_3_1_3.eps}
+    \end{figure}
+    \begin{figure}[H]
+      \centering
+      \caption{Structure for disjoint-set forest with path compression after find-set operations}
+      \includegraphics[scale=.5]{21_3_1_4.eps}
+    \end{figure}
+    Find-set(2) and Find-set(9) both return ``1''. In fact any find-set will return ``1'' now because it is the root of
+    the tree.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{21.3-4}
-  Suppose that we wish to add the operation PRINT-SET(x), which is given a node x and prints all the members of x’s set,
+  Suppose that we wish to add the operation PRINT-SET(x), which is given a node x and prints all the members of x's set,
   in any order. Show how we can add just a single attribute to each node in a disjoint-set forest so that PRINT-SET(x)
-  takes time linear in the number of members of x’s set and the asymptotic running times of the other operations are
+  takes time linear in the number of members of x's set and the asymptotic running times of the other operations are
   unchanged. Assume that we can print each member of the set in O(1) time.
 \end{problem}
 
