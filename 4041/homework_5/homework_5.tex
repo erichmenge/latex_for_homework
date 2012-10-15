@@ -71,6 +71,17 @@
 \begin{problem}{15.3-2}
   Draw the recursion tree for the MERGE-SORT procedure from Section 2.3.1 on an array of 16 elements. Explain why
   memoization fails to speed up a good divide-and-conquer algorithm such as MERGE-SORT.
+  \begin{solution}
+    \begin{figure}[H]
+      \centering
+      \caption{Recursion map for merge-sort with 16 elements.}
+      \includegraphics[scale=.35]{15_3_2.eps}
+    \end{figure}
+    Memoization is a technique used when recursive paths would otherwise be followed more than once. Merge-sort splits
+    the array in half each level of recursion, and then each split is visited, and so on until the individual nodes are
+    reached. Since each split needs to return before merge-sort returns (down to the individual nodes), each path is
+    only visited once.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{15.3-3}
