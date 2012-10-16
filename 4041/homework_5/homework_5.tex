@@ -66,6 +66,15 @@
 \begin{problem}{15.2-4}
   Describe the subproblem graph for matrix-chain multiplication with an input chain of length $n$. How many vertices
   does it have? How many edges does it have, and which edges are they?
+  \begin{solution}
+    Each subproblem can be represented by a cell in a table $i\times j$. Where $j = i + l - 1$ and $l = 2\ldots n$ and
+    $i = 1 \ldots (n - l + 1)$. Only half of the table is used though so we have $\frac{n(n - 1)}{2}$ verticies. Also
+    we're looking for every combination of pairs, which can be represented as $\binom{n}{2} = \frac{n(n - 1)}{2}$.
+    \br
+    We want each subproblem to only be visited once and we accomplish this by storing the values in the table. As such
+    we have $\frac{n(n - 1)}{2} - 1$ edges. Each edge is directional pointing to sub-problems and sub-problems pointing
+    to sub-problems of theirs.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{15.3-2}
