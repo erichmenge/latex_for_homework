@@ -42,6 +42,22 @@
   in any order. Show how we can add just a single attribute to each node in a disjoint-set forest so that PRINT-SET(x)
   takes time linear in the number of members of x's set and the asymptotic running times of the other operations are
   unchanged. Assume that we can print each member of the set in O(1) time.
+  \begin{solution}
+    In a language with pointers like C++ I would add a members pointer that would point to a pointer to a vector of
+    integers. When make-set is called the vector would be created. Subsequent unions would have the additional members
+    pushed onto the vector of members. One of the sets would have its member vector arbitrarily deleted and then set the
+    member pointer to point to the modified vector, so only one member vector would be used. This can be done cheaply as
+    it is a pointer to a pointer, so no iteration would be required in order to update all the nodes to point to the new
+    vector.
+
+    Because it is a pointer, the print-set simply iterates over the vector of integers and can print out the membership
+    in linear time.
+    \begin{figure}[H]
+      \centering
+      \caption{Data Structure with members attribute}
+      \includegraphics[scale=.5]{21_3_4.eps}
+    \end{figure}
+  \end{solution}
 \end{problem}
 
 \begin{problem}{15.2-2}
