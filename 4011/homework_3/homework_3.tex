@@ -12,7 +12,9 @@
   b. Balanced parentheses and square brackets. Thus, ()(), [][] and (([])[()]) would be legal expressions of this
      language but ([)] and [(()] would not.
   \br
-  c.
+  c. The language in Exercise 2.6, part d, in the book.
+  \br
+  d. $\{ a^ib^jc^k | i = j or j = k \}$
   \begin{solution}
     a. At first I was tempted to do something like $S \rightarrow bab | bba | abb | A | \epsilon$ but that wouldn't
     allow for long chains such as $aabaabbbbbbb$. \\ So instead it should be $S \rightarrow bSaSb | bSbSa |
@@ -22,6 +24,17 @@
     b. $S \rightarrow (S)\ |\ [S]\ |\ \epsilon$
     \br
     c.
+    \br
+    d.
+    \begin{align*}
+      S &\rightarrow BC'|AC \\
+      B &\rightarrow aBb | \epsilon \\
+      C &\rightarrow bCc | \epsilon \\
+      C' &\rightarrow cC' | \epsilon \\
+      A &\rightarrow aA | \epsilon
+    \end{align*}
+    So this says from our start position we can have balanced $a$s and $b$s followed by any number of $c$s, or we can
+    have any number of $a$s followed by balanced $b$s and $c$s.
   \end{solution}
 \end{problem}
 \end{document}
