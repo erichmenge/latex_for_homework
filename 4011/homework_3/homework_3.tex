@@ -1,5 +1,7 @@
 \input{../../preamble.tex}
 \input{../class_info.tex}
+\usepackage{subfigure}
+\usepackage{graphicx}
 
 \sethomeworknumber{3}
 
@@ -35,6 +37,25 @@
     \end{align*}
     So this says from our start position we can have balanced $a$s and $b$s followed by any number of $c$s, or we can
     have any number of $a$s followed by balanced $b$s and $c$s.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{2}
+  We will observe (without proof) in class that any grammar for the language in part (d) above must be ambiguous.
+  Exhibit this ambiguity for the grammar you have provided by showing two different parse trees for a suitably chosen
+  string in the language.
+  \begin{solution}
+    If we select a string which belongs to both, such as $abc$, we can get two parse trees.
+    \begin{figure}[H]
+      \centering
+      \caption{Two Parse Trees for the Same CFG}
+      \subfigure[Tree 1]{
+        \includegraphics{problem_2_a.eps}
+      }
+      \subfigure[Tree 2]{
+        \includegraphics{problem_2_b.eps}
+      }
+    \end{figure}
   \end{solution}
 \end{problem}
 \end{document}
