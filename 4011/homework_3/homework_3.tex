@@ -9,25 +9,29 @@
 \homeworkheader{\classnameandsection}
 
 \begin{problem}{1}
-  a. $\{w \in \{a,b\}^*\ |\ \text{w has twice as many bs as as} \}$
+  1a. $\{w \in \{a,b\}^*\ |\ \text{w has twice as many bs as as} \}$
   \br
-  b. Balanced parentheses and square brackets. Thus, ()(), [][] and (([])[()]) would be legal expressions of this
+  1b. Balanced parentheses and square brackets. Thus, ()(), [][] and (([])[()]) would be legal expressions of this
      language but ([)] and [(()] would not.
   \br
-  c. The language in Exercise 2.6, part d, in the book.
+  1c. The language in Exercise 2.6, part d, in the book.
   \br
-  d. $\{ a^ib^jc^k | i = j or j = k \}$
+  1d. $\{ a^ib^jc^k | i = j or j = k \}$
+  \br
+  2. We will observe (without proof) in class that any grammar for the language in part (d) above must be ambiguous.
+     Exhibit this ambiguity for the grammar you have provided by showing two different parse trees for a suitably chosen
+     string in the language.
   \begin{solution}
-    a. At first I was tempted to do something like $S \rightarrow bab | bba | abb | A | \epsilon$ but that wouldn't
+    1a. At first I was tempted to do something like $S \rightarrow bab | bba | abb | A | \epsilon$ but that wouldn't
     allow for long chains such as $aabaabbbbbbb$. \\ So instead it should be $S \rightarrow bSaSb | bSbSa |
     aSbSb|\epsilon$. Which is much like above except it separates each character with $S$ to allow enough flexibility
     for the $\Sigma^*$ requirement.
     \br
-    b. $S \rightarrow (S)\ |\ [S]\ |\ \epsilon$
+    1b. $S \rightarrow (S)\ |\ [S]\ |\ \epsilon$
     \br
-    c.
+    1c.
     \br
-    d.
+    1d.
     \begin{align*}
       S &\rightarrow BC'|AC \\
       B &\rightarrow aBb | \epsilon \\
@@ -37,25 +41,45 @@
     \end{align*}
     So this says from our start position we can have balanced $a$s and $b$s followed by any number of $c$s, or we can
     have any number of $a$s followed by balanced $b$s and $c$s.
-  \end{solution}
-\end{problem}
-
-\begin{problem}{2}
-  We will observe (without proof) in class that any grammar for the language in part (d) above must be ambiguous.
-  Exhibit this ambiguity for the grammar you have provided by showing two different parse trees for a suitably chosen
-  string in the language.
-  \begin{solution}
-    If we select a string which belongs to both, such as $abc$, we can get two parse trees.
+    \br
+    2. If we select a string which belongs to both, such as $abc$, we can get two parse trees.
     \begin{figure}[H]
       \centering
       \caption{Two Parse Trees for the Same CFG}
       \subfigure[Tree 1]{
-        \includegraphics{problem_2_a.eps}
+        \includegraphics{problem_1_2_a.eps}
       }
       \subfigure[Tree 2]{
-        \includegraphics{problem_2_b.eps}
+        \includegraphics{problem_1_2_b.eps}
       }
     \end{figure}
   \end{solution}
 \end{problem}
+
+\begin{problem}{2}
+\end{problem}
+
+\begin{problem}{3}
+\end{problem}
+
+\begin{problem}{4}
+\end{problem}
+
+\begin{problem}{5}
+\end{problem}
+
+\begin{problem}{6}
+\end{problem}
+
+\begin{problem}{7}
+\end{problem}
+
+\begin{problem}{8}
+\end{problem}
+
+\begin{problem}{9}
+\end{problem}
+
+
+
 \end{document}
