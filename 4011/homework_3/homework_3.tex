@@ -161,6 +161,22 @@
 \end{problem}
 
 \begin{problem}{7}
+  \begin{solution}
+    1. From Problem 2.18 part a we know $L \cap R$ is context free. $L - R = L \cap \overline{R}$ (see figure~\ref{fig:venn} below).
+    Since the complement of R is also regular, and $L \cap R$ is context free, $L - R$ is context free. \qed
+    \begin{figure}[H]
+      \centering
+      \caption{Venn Diagrams}
+      \subfigure[Complement of R]{
+        \includegraphics[scale=.4]{problem_7_a.eps}
+      }
+      \subfigure[L intersect R complement]{
+        \includegraphics[scale=.4]{problem_7_b.eps}
+      }
+      \label{fig:venn}
+    \end{figure}
+    \noindent 2. If we try to do the same thing above, only this time with R - L, we would have to take the complement of L. But we proved in problem 6 that context free languages are not closed under complementation. Therefore we can't use the set property $R - L = R \cap \overline{L}$ because the complement of L may not be a context free language.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{8}
