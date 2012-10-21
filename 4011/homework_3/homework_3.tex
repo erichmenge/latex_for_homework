@@ -78,6 +78,35 @@
 \end{problem}
 
 \begin{problem}{4}
+  Problem 2.14 from the book.
+  \begin{solution}
+    Step 1: Add a new start state $S_0$.
+    \begin{align*}
+      S_0 &\rightarrow A \\
+      A &\rightarrow BAB|B|\epsilon \\
+      B &\rightarrow 00|\epsilon
+    \end{align*}
+    Step 2: Remove epsilons.
+    \begin{align*}
+      S_0 &\rightarrow A | \epsilon \\
+      A &\rightarrow BAB|B|A|AB|BA|BB \\
+      B &\rightarrow 00
+    \end{align*}
+    Step 3: Remove unit rules.
+    \begin{align*}
+      S_0 &\rightarrow BAB|00|AB|BA|BB| \epsilon \\
+      A &\rightarrow BAB|00|AB|BA|BB \\
+      B &\rightarrow 00
+    \end{align*}
+    Step 4: Add additional rules.
+    \begin{align*}
+      S_0 &\rightarrow BD|CC|AB|BA|BB| \epsilon \\
+      A &\rightarrow BD|CC|AB|BA|BB \\
+      B &\rightarrow CC \\
+      C &\rightarrow 0 \\
+      D &\rightarrow AB
+    \end{align*}
+  \end{solution}
 \end{problem}
 
 \begin{problem}{5}
