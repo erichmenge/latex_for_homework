@@ -183,8 +183,33 @@
 \end{problem}
 
 \begin{problem}{9}
+  Do Problem 2.44 from the book. Hint: Think of constructing a PDA for $A \Diamond B$ from the DFAs that are known to exist for A
+  and B.
+  \begin{solution}
+    Let $DFA_A = \tuple{Q_A, \Sigma, \delta_A, q_A, F_A}$ recognize the language of A. \\
+    Let $DFA_B = \tuple{Q_B, \Sigma, \delta_B, q_B, F_B}$ recognize the language of B. \\
+    Let $M_{A \Diamond B} = \tuple{Q, \Sigma, \Gamma, \delta, q_0, \{ q_F \}}$ be some PDA recognizing $A \Diamond B$ where:
+    \br
+    $Q = Q_a \cup Q_b \cup \{ q_0, q_F \}$ \\
+    $\Gamma = \{ \$, x \}$, \$ is the start of the stack and x counts symbols in A.
+    \br
+    \[
+      \delta(q, a, b) =
+      \begin{cases}
+        \{ q_A, \$ \} &\text{ if } q = q_0 \text{ and } a = b = \epsilon \\
+        \{ \delta_A(q, a), x\} &\text{ for all } q \in Q_a \text{ and } a \in \Sigma \text{ and } b = \epsilon \\
+        \{ q_B, \epsilon \} &\text{ if } q \in Q_F \text{ and } a = b = \epsilon \\
+        \{ \delta_B(q, a), \epsilon \} &\text{ for all } q \in Q_b \text{ and } a \in \Sigma \text{ and } b = x \\
+        \{ q_F, \epsilon \} &\text{ if } q \in F_b \text{ and } b = \$ \text{ and } a = \epsilon \\
+        \text{else } &\emptyset
+      \end{cases}
+    \]
+
+  \end{solution}
+    So the PDA pushes \$ onto the stack then transitions to the start state of $Q_A$. From there the PDA runs through
+    the machine A, and for each symbol read by A it pushes $x$ onto the stack. From the accept states of A it
+    transitions to B and then runs through B, this time popping an $x$ off the stack each symbol B reads. If B is in the
+    accept state and the stack is empty denoted by \$ the PDA moves into its accept state.
 \end{problem}
-
-
 
 \end{document}
