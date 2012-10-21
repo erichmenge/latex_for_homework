@@ -113,6 +113,36 @@
 \end{problem}
 
 \begin{problem}{6}
+  Do Exercise 2.2 from the book.
+  \begin{solution}
+    a. We can show a CFG trivially for A and B.
+    \br
+    A:
+    \begin{align*}
+      S &\rightarrow AB \\
+      A &\rightarrow aA|\epsilon \\
+      B &\rightarrow bBc|\epsilon
+    \end{align*}
+    B:
+    \begin{align*}
+      S &\rightarrow AC \\
+      A &\rightarrow aAb|\epsilon \\
+      C &\rightarrow cC|\epsilon
+    \end{align*}
+    The intersection is $A \cap B = \{ a^nb^nc^n|n \ge 0 \}$ but Example 2.36 shows by pumping lemma that $\{
+    a^nb^nc^n|n \ge 0 \}$ is not context free. Since there is at least one intersection that isn't closed we can
+    conclude that CFGs are not closed under intersection.
+    \br
+    b. We can show $A \cup B$ as:
+    \begin{align*}
+      S &\rightarrow AB|XC \\
+      A &\rightarrow aA|\epsilon \\
+      B &\rightarrow bBc|\epsilon \\
+      X &\rightarrow aXb|\epsilon \\
+      C &\rightarrow cC|\epsilon
+    \end{align*}
+    So this is a CFG for $A \cup B$. Assuming CFGs are closed under complementation we have $\overline{A} \cup \overline{B}$ is a CFG as well. But using DeMorgan's laws we have $\overline{\overline{A} \cup \overline{B}} \equiv A \cap B$ which was demonstrated in part A to not be a CFG. Therefore by contradiction CFGs are not closed under complementation. \qed
+  \end{solution}
 \end{problem}
 
 \begin{problem}{7}
