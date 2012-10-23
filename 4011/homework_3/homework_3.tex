@@ -57,6 +57,44 @@
 \end{problem}
 
 \begin{problem}{2}
+  \begin{solution}
+    Claim: $L(G) \subseteq L$
+    \begin{proof}
+      Base Case: Derivations of length 1.\\
+      $Y \Rightarrow \epsilon$. $L(G_Y)$ is strings that start with b, a, or start and end with $\epsilon$ so the base case holds.
+      \br
+      Inductive Case: Derivations of length n + 1. \\
+      \begin{align*}
+        Y &\Rightarrow bY \Rightarrow^* bw' \\
+          &\Rightarrow aY \Rightarrow^* aw'
+      \end{align*}
+      Both of these derivations hold.
+      \begin{align*}
+        S &\Rightarrow bY \Rightarrow^* bw' \\
+          &\Rightarrow Ya \Rightarrow^* w'a \\
+          &\Rightarrow aSb \Rightarrow^* aw'b
+      \end{align*}
+      The first and second derivation hold because if it starts with a b it is not of the form $a^nb^n$. \\
+      The last derivation holds because $w'$ starts with an a or b thus it is not of the form $a^nb^n$.
+    \end{proof}
+    \noindent Claim: $L \subseteq L(G)$
+    \begin{proof}
+      Base Case: String of length 0. $Y \Rightarrow \epsilon$ so base case holds.
+      \br
+      First case: $w = aw'$. But w is not of the form $a^nb^n$ so $w'$ doesn't have one fewer $a$s than $b$s. \\
+      Induction:
+      \begin{align*}
+        Y &\Rightarrow w' \\
+        S &\Rightarrow aSb \Rightarrow aaYb \Rightarrow aab \Rightarrow^* aw' = w
+      \end{align*}
+      Second case: $w = bw'$. But w is not of the form $a^nb^n$ so $w'$ doesn't have one fewer $b$s than $a$s.\\
+      Induction:\\
+      \begin{align*}
+        Y &\Rightarrow w'. \\
+        S &\Rightarrow bY \Rightarrow^* bw' = w
+      \end{align*}
+    \end{proof}
+  \end{solution}
 \end{problem}
 
 \begin{problem}{3}
