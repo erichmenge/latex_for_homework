@@ -161,11 +161,10 @@
     constructing some CFG to recognize it generally.
     \br
     \textbf{First, union:} \\ $L_1 \cup L_2 = < V_1 \cup V_2 \cup \{S\}, \Sigma,
-    R_1 \cup R_2 \cup \{ S \rightarrow S_1|S_2 \}, S \}$ where any conflicting variable names have been renamed.
+    R_1 \cup R_2 \cup \{ S \rightarrow S_1|S_2 \}, S \}$.
     \br
     \textbf{Concatination:} \\
     $L_1 \circ L_2 = < V_1 \cup V_2 \cup \{S\}, \Sigma, R_1 \cup R_2 \cup \{ S \rightarrow S_1S_2 \}, S \}$
-    where any conflicting variable names have been renamed.
     \br
     \textbf{Star:} \\
     $L_1^* = < V_1 \cup \{S\}, \Sigma, R_1 \cup \{ S \rightarrow SS_1|\epsilon \}, S \}$
