@@ -45,11 +45,19 @@
 \end{problem}
 
 \begin{problem}{16.1-3}
-  Not just any greedy approach to the activity-selection problem produces a max- imum-size set of mutually compatible
+  Not just any greedy approach to the activity-selection problem produces a maximum-size set of mutually compatible
   activities. Give an example to show that the approach of selecting the activity of least duration from among those
   that are compatible with previously selected activities does not work. Do the same for the approaches of always
   selecting the compatible activity that overlaps the fewest other remaining activities and always selecting the
   compatible remaining activity with the earliest start time.
+  \begin{solution}
+    Below is a Ruby implementation that demonstrates selecting the earliest start time gets you more events than the
+    other methods. The reason why the other methods fail is because they do not exhibit an optimal substructure where
+    you can select a greedy choice each subproblem. The shortest durating tells you nothing about the placement of the
+    activities so there is no optimal substructure. The same is true with the events with fewest overlaps. There is no
+    structure that actually places the activities in some optimal way.
+    \lstinputlisting[breaklines=true]{16_1_3.rb}
+  \end{solution}
 \end{problem}
 
 \end{document}
