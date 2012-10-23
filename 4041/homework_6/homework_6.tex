@@ -26,8 +26,22 @@
 
 \begin{problem}{16.1-2}
   Suppose that instead of always selecting the first activity to finish, we instead select the last activity to start
-  that is compatible with all previously selected activities. De- scribe how this approach is a greedy algorithm, and
+  that is compatible with all previously selected activities. Describe how this approach is a greedy algorithm, and
   prove that it yields an optimal solution.
+  \begin{solution}
+    This approach is greedy in the same way that the first approach is greedy. This time we're starting from the end and
+    working toward the beginning of the timeline. We have two cases for optimal solution. A solution that contains the
+    greedy choice and one that doesn't. In the case we have a solution without the greedy choice we simply swap the last
+    activity to start with one that starts later.
+
+    This then has an optimal substructure just like the first approach. We take a list of sorted events, and find the
+    greedy choice which is the last activity to start. Then the optimal structure is the solution to the subproblem with
+    the greedy choice added back on to it so that there are no overlapping activities. The subproblem is solved the same
+    way, so that each subproblem has a greedy choice and optimal structure. This is an inductive proof.
+
+    This works the same was as the original problem, only going the other direction (from the end of the timeline to the
+    beginning). It exhibits the same optimal substructure.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{16.1-3}
