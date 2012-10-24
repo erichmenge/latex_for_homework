@@ -226,6 +226,71 @@
 \end{problem}
 
 \begin{problem}{5.4}
+  \begin{solution}
+    1.
+      \begin{lstlisting}
+         SELECT E.name, E.age FROM Emp E, Works W, Dept D
+          WHERE E.eid = W.wid AND
+                W.did = D.did AND
+                D.DNAME = 'Hardware'
+         INTERSECT
+         SELECT E.name, E.age FROM Emp E, Works W, Dept D
+            WHERE E.eid = W.wid AND
+                  W.did = D.did AND
+                  D.DNAME = 'Hardware'
+       \end{lstlisting}
+    2.
+    \begin{lstlisting}
+      SELECT W.did, count(W.eid) FROM Works W
+      GROUP BY W.did
+      HAVING (
+        SELECT sum(WW.pct_time) FROM Works WW WHERE WW.did = w.did
+      ) > 2000
+    \end{lstlisting}
+    3.
+    \begin{lstlisting}
+      SELECT E.ename FROM Emp E WHERE E.Salary > ALL (
+        SELECT D.budget FROM Dept D, Works W
+        WHERE E.eid = W.eid AND D.did = W.did
+      )
+    \end{lstlisting}
+    4.
+    \begin{lstlisting}
+      SELECT D.managerid FROM Dept D
+      WHERE ALL (
+        SELECT DD.budget FROM Dept DD
+        WHERE DD.managerid = D.managerid
+      ) > 1000000
+    \end{lstlisting}
+    5.
+    \begin{lstlisting}
+      SELECT E.ename FROM Emp E WHERE E.eid IN (
+        SELECT D.managerid FROM Dept D
+        WHERE D.budget = (SELECT MAX(DD.budget) FROM Dept DD WHERE D.managerid = DD.managerid)
+      )
+    \end{lstlisting}
+    6.
+    \begin{lstlisting}
+      SELECT D.managerid FROM Dept D
+      WHERE ALL (
+        SELECT DD.budget FROM Dept DD
+        WHERE DD.managerid = D.managerid
+      ) > 5000000
+    \end{lstlisting}
+    7.
+    \begin{lstlisting}
+      SELECT DISTINCT Departments.managerid FROM (
+        SELECT DISTINCT D.managerid, sum(D.budget) AS DBudget FROM Dept D Group By D.managerid) AS Departments
+      WHERE Departments.DBudget = (SELECT max(Departments.DBudget) FROM Departments)
+    \end{lstlisting}
+    8.
+    \begin{lstlisting}
+      SELECT E.ename FROM Emp E, Dept D
+      WHERE E.id = D.managerid
+      GROUP BY E.eid
+      HAVING EVERY (D.budget > 7000000) AND ANY(D.budget < 5000000)
+    \end{lstlisting}
+  \end{solution}
 \end{problem}
 
 \end{document}
