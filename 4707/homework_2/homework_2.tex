@@ -1,0 +1,296 @@
+\input{../../preamble.tex}
+\input{../class_info.tex}
+\lstset{language=SQL,breaklines=true}
+
+\sethomeworknumber{2}
+
+\begin{document}
+\homeworkheader{\classnameandsection}
+
+\begin{problem}{3.12}
+  Consider the scenario from Exercise 2.2, where you designed an ER diagram for a university database. Write SQL
+  statements to create the corresponding relations and capture as many of the constraints as possible. If you cannot:
+  capture some constraints, explain why.
+  \begin{solution}
+    \textbf{SQL Statements for 2.2-1}
+    \lstinputlisting{problem_3_12_1.sql}
+    \textbf{SQL Statements for 2.2-2}
+    \lstinputlisting{problem_3_12_2.sql}
+    \textbf{SQL Statements for 2.2-3} \\
+    We can't check to ensure every professor teaches some class unless we were to check this when the professors are
+    inserted.
+    \br
+    \textbf{SQL Statements for 2.2-4}
+    \lstinputlisting{problem_3_12_4.sql}
+    \textbf{SQL Statements for 2.2-5}
+    \lstinputlisting{problem_3_12_5.sql}
+    \textbf{SQL Statements for 2.2-6}
+    \lstinputlisting{problem_3_12_6.sql}
+  \end{solution}
+\end{problem}
+
+\begin{problem}{3.14}
+  Consider the scenario from Exercise 2.4, where you designed an ER diagram for a company database write SQL statements
+  to create the corresponding relations and capture as many of the constraints as possible. If you cannot capture some
+  constraints, explain why.
+  \begin{solution}
+    \lstinputlisting{problem_3_14.sql}
+  \end{solution}
+\end{problem}
+
+\begin{problem}{4.2}
+  \begin{solution}
+    1. Minimum = N2, Maximum = N1 + N2, Requires union compatibility\\
+    2. Minimum = 0, Maximum = N1, Requires union compatibility\\
+    3. Minimum = 0, Maximum = N1, Requires union compatibility \\
+    4. Minimum = Maximum = $N1 \times N2$ \\
+    5. Minimum = 0, Maximum = N1, Assumption: There is some attribute $a$ \\
+    6. Minimum = 0, Maximum = N1, Assumption: There is some attribute $a$ \\
+    7. Minimum = Maximum = 0, Assumption: R2 is a subset of R1.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{4.3(Relational Algebra ONLY)}
+  \begin{solution}
+    1.
+    $
+      \pi_{sname}(((\sigma_{color=red} Parts) \bowtie_{catalog.pid=parts.pid} Catalog)
+      \bowtie_{catalog.sid=suppliers.sid} Suppliers)
+    $
+    \br
+    2.
+    $
+      \pi_{sid}((\sigma_{color=green\lor color=red} Parts) \bowtie Catalog)
+    $
+    \br
+    3.\\
+    $
+      \rho(temp1,
+        \pi_{sid}(
+          ((\sigma_{color=red} Parts)\bowtie Catalog)
+      ) \\
+      \rho(temp2,
+        \pi_{sid}(
+          (\sigma_{address=\text{221 Packer Ave}} Suppliers)
+        )
+      )\\
+      \pi_{sid}(temp1 \cup temp2)
+    $
+    \br
+    4.
+    $
+      \rho(temp1, (\sigma_{color=red} Parts) \bowtie Catalog)\\
+      \rho(temp2, (\sigma_{color=green} Parts) \bowtie Catalog)\\
+      \pi_{sid}(temp1 \cap temp2)
+    $
+    \br
+    5.
+    $
+      (\pi_{sid,pid} Catalog)/(\pi_{pid} Parts)
+    $
+    \br
+    6. $(\pi_{sid,pid} Catalog)/(\pi_{pid}\sigma_{color=red} Parts)$
+    \br
+    7.
+    $
+      (\pi_{sid,pid} Catalog)/(\pi_{pid}((\sigma_{color=green\lor color=red} Parts))
+    $
+    \br
+    8.
+    $
+      \rho(temp1, (\pi_{sid,pid} Catalog)/(\pi_{pid}\sigma_{color=red} Parts))\\
+      \rho(temp2, (\pi_{sid,pid} Catalog)/(\pi_{pid}\sigma_{color=green} Parts))\\
+      temp1 \cup temp2
+    $
+    9.
+    \br
+    $
+      \rho(temp1, Catalog)\\
+      \rho(temp2, Catalog)\\
+      \pi_{temp1.sid, temp2.sid}(\sigma_{temp1.pid=temp2.pid\land temp1.sid \ne temp2.sid \land temp1.cost >
+          temp2.cost}(temp1 \times temp2))
+    $
+    \br
+    10.
+    $
+      \rho(temp1, (\pi_{sid,pid} Catalog)/(\pi_{pid}\sigma_{color=red} Parts))\\
+      \rho(temp2, (\pi_{sid,pid} Catalog)/(\pi_{pid}\sigma_{color=green} Parts))\\
+      \pi_{temp1.pid}(\sigma_{temp1.pid=temp2.pid \land temp1.sid \ne temp2.sid}(temp1 \times temp2))
+    $
+    \br
+    11.
+    \br
+    12.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{4.4}
+  \begin{solution}
+    1. Give the names of suppliers selling a red part for less than \$100.00.
+    \br
+    2. sid is projected, then sname is projected. This relational algebra query doesn't return anything.
+    \br
+    3. This computes the names of suppliers that sell a red part and green part for less than \$100.00
+    \br
+    4. This computes the supplier ids of suppliers that sell a red part and green part for less than \$100.00
+    \br
+    5. This computes the names of suppliers that sell a red part and green part for less than \$100.00
+  \end{solution}
+\end{problem}
+
+\begin{problem}{5.2}
+  1. \begin{lstlisting}
+    SELECT DISTINCT pnames FROM catalog, parts WHERE catalog.pid = parts.pid
+  \end{lstlisting}
+  2. \begin{lstlisting}
+    SELECT suppliers.sname FROM suppliers WHERE suppliers.sname NOT IN(
+      (SELECT parts.pid FROM parts)
+      MINUS
+      (SELECT catalog.pid FROM catalog WHERE catalog.pid = parts.pid)
+    )
+  \end{lstlisting}
+  3. \begin{lstlisting}
+    SELECT suppliers.sname FROM suppliers WHERE suppliers.sname NOT IN(
+      (SELECT parts.pid FROM parts WHERE parts.color = red)
+      MINUS
+      (SELECT catalog.pid FROM catalog,parts WHERE catalog.pid = parts.pid AND parts.color = red)
+    )
+  \end{lstlisting}
+  4. \begin{lstlisting}
+    SELECT pnames FROM Parts P, Suppliers S, Catalog C WHERE
+      S.sname = 'Acme Widget Suppliers'
+      AND S.sid = C.sid
+      AND C.pid = P.pid
+  \end{lstlisting}
+  5. \begin{lstlisting}
+    SELECT C.sid FROM Catalog C
+    WHERE C.cost > (
+      SELECT average(CC.cost) FROM Catalog CC
+      WHERE C.pid = CC.pid
+    )
+  \end{lstlisting}
+  6. \begin{lstlisting}
+    SELECT S.sname, FROM Suppliers S, Parts P, Catalog C
+    WHERE C.pid = P.pid AND
+          S.sid = C.sid AND
+          C.cost = (
+            SELECT max(CC.cost) FROM Catalog CC WHERE CC.pid = P.pid
+          )
+  \end{lstlisting}
+  7. \begin{lstlisting}
+    SELECT DISTINCT C.sid FROM Parts P, Catalog C
+    WHERE C.pid = P.pid AND
+          P.color = 'red'
+  \end{lstlisting}
+  8. \begin{lstlisting}
+    SELECT C.sid FROM Catalog C, Parts P
+      WHERE P.color = "red" AND
+            P.pid = C.pid
+    INTERSECT
+    SELECT C.sid FROM Catalog C, Parts P
+      WHERE P.color = "green" AND
+            P.pid = C.pid
+  \end{lstlisting}
+  9. \begin{lstlisting}
+      SELECT C.sid FROM Catalog C, Parts P
+        WHERE P.color = "red" AND
+              P.pid = C.pid
+      UNION
+      SELECT C.sid FROM Catalog C, Parts P
+        WHERE P.color = "green" AND
+              P.pid = C.pid
+  \end{lstlisting}
+  10.
+  \begin{lstlisting}
+    SELECT S.sname, count(*) AS PC FROM Suppliers S, Parts P, Catalog C
+      WHERE P.pid = C.pid AND
+            C.sid = S.sid
+      GROUP BY S.sname
+      HAVING P.color = 'green'
+  \end{lstlisting}
+  11.
+  \begin{lstlisting}
+    SELECT S.sname, max(C.cost) FROM (
+      SELECT S.sname, C.cost FROM Suppliers S, Catalog C, Parts P
+        WHERE P.pid = C.pid AND C.sid = S.sid
+        GROUP BY S.sname
+        HAVING p.color = 'green'
+      INTERSECT
+      SELECT S.sname, C.cost FROM Suppliers S, Catalog C, Parts P
+        WHERE P.pid = C.pid AND C.sid = S.sid
+        GROUP BY S.sname
+        HAVING p.color = 'red'
+    )
+    GROUP BY S.sname
+  \end{lstlisting}
+\end{problem}
+
+\begin{problem}{5.4}
+  \begin{solution}
+    1.
+      \begin{lstlisting}
+         SELECT E.name, E.age FROM Emp E, Works W, Dept D
+          WHERE E.eid = W.wid AND
+                W.did = D.did AND
+                D.DNAME = 'Hardware'
+         INTERSECT
+         SELECT E.name, E.age FROM Emp E, Works W, Dept D
+            WHERE E.eid = W.wid AND
+                  W.did = D.did AND
+                  D.DNAME = 'Hardware'
+       \end{lstlisting}
+    2.
+    \begin{lstlisting}
+      SELECT W.did, count(W.eid) FROM Works W
+      GROUP BY W.did
+      HAVING (
+        SELECT sum(WW.pct_time) FROM Works WW WHERE WW.did = w.did
+      ) > 2000
+    \end{lstlisting}
+    3.
+    \begin{lstlisting}
+      SELECT E.ename FROM Emp E WHERE E.Salary > ALL (
+        SELECT D.budget FROM Dept D, Works W
+        WHERE E.eid = W.eid AND D.did = W.did
+      )
+    \end{lstlisting}
+    4.
+    \begin{lstlisting}
+      SELECT D.managerid FROM Dept D
+      WHERE ALL (
+        SELECT DD.budget FROM Dept DD
+        WHERE DD.managerid = D.managerid
+      ) > 1000000
+    \end{lstlisting}
+    5.
+    \begin{lstlisting}
+      SELECT E.ename FROM Emp E WHERE E.eid IN (
+        SELECT D.managerid FROM Dept D
+        WHERE D.budget = (SELECT MAX(DD.budget) FROM Dept DD WHERE D.managerid = DD.managerid)
+      )
+    \end{lstlisting}
+    6.
+    \begin{lstlisting}
+      SELECT D.managerid FROM Dept D
+      WHERE ALL (
+        SELECT DD.budget FROM Dept DD
+        WHERE DD.managerid = D.managerid
+      ) > 5000000
+    \end{lstlisting}
+    7.
+    \begin{lstlisting}
+      SELECT DISTINCT Departments.managerid FROM (
+        SELECT DISTINCT D.managerid, sum(D.budget) AS DBudget FROM Dept D Group By D.managerid) AS Departments
+      WHERE Departments.DBudget = (SELECT max(Departments.DBudget) FROM Departments)
+    \end{lstlisting}
+    8.
+    \begin{lstlisting}
+      SELECT E.ename FROM Emp E, Dept D
+      WHERE E.id = D.managerid
+      GROUP BY E.eid
+      HAVING EVERY (D.budget > 7000000) AND ANY(D.budget < 5000000)
+    \end{lstlisting}
+  \end{solution}
+\end{problem}
+
+\end{document}
