@@ -51,6 +51,77 @@
 \end{problem}
 
 \begin{problem}{4.3(Relational Algebra ONLY)}
+  \begin{solution}
+    1.
+    $
+      \pi_{sname}(((\sigma_{color=red} Parts) \bowtie_{catalog.pid=parts.pid} Catalog)
+      \bowtie_{catalog.sid=suppliers.sid} Suppliers)
+    $
+    \br
+    2.
+    $
+      \pi_{sid}((\sigma_{color=green\lor color=red} Parts) \bowtie Catalog)
+    $
+    \br
+    3.\\
+    $
+      \rho(temp1,
+        \pi_{sid}(
+          ((\sigma_{color=red} Parts)\bowtie Catalog)
+      ) \\
+      \rho(temp2,
+        \pi_{sid}(
+          (\sigma_{address=\text{221 Packer Ave}} Suppliers)
+        )
+      )\\
+      \pi_{sid}(temp1 \cup temp2)
+    $
+    \br
+    4.
+    $
+      \rho(temp1, (\sigma_{color=red} Parts) \bowtie Catalog)\\
+      \rho(temp2, (\sigma_{color=green} Parts) \bowtie Catalog)\\
+      \pi_{sid}(temp1 \cap temp2)
+    $
+    \br
+    5.
+    $
+      (\pi_{sid,pid} Catalog)/(\pi_{pid} Parts)
+    $
+    \br
+    6. $(\pi_{sid,pid} Catalog)/(\pi_{pid}\sigma_{color=red} Parts)$
+    \br
+    7.
+    $
+      (\pi_{sid,pid} Catalog)/(\pi_{pid}((\sigma_{color=green\lor color=red} Parts))
+    $
+    \br
+    8.
+    $
+      \rho(temp1, (\pi_{sid,pid} Catalog)/(\pi_{pid}\sigma_{color=red} Parts))\\
+      \rho(temp2, (\pi_{sid,pid} Catalog)/(\pi_{pid}\sigma_{color=green} Parts))\\
+      temp1 \cup temp2
+    $
+    9.
+    \br
+    $
+      \rho(temp1, Catalog)\\
+      \rho(temp2, Catalog)\\
+      \pi_{temp1.sid, temp2.sid}(\sigma_{temp1.pid=temp2.pid\land temp1.sid \ne temp2.sid \land temp1.cost >
+          temp2.cost}(temp1 \times temp2))
+    $
+    \br
+    10.
+    $
+      \rho(temp1, (\pi_{sid,pid} Catalog)/(\pi_{pid}\sigma_{color=red} Parts))\\
+      \rho(temp2, (\pi_{sid,pid} Catalog)/(\pi_{pid}\sigma_{color=green} Parts))\\
+      \pi_{temp1.pid}(\sigma_{temp1.pid=temp2.pid \land temp1.sid \ne temp2.sid}(temp1 \times temp2))
+    $
+    \br
+    11.
+    \br
+    12.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{4.4}
