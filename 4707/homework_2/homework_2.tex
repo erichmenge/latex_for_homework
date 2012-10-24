@@ -1,5 +1,6 @@
 \input{../../preamble.tex}
 \input{../class_info.tex}
+\lstset{language=SQL,breaklines=true}
 
 \sethomeworknumber{2}
 
@@ -67,6 +68,90 @@
 \end{problem}
 
 \begin{problem}{5.2}
+  1. \begin{lstlisting}
+    SELECT DISTINCT pnames FROM catalog, parts WHERE catalog.pid = parts.pid
+  \end{lstlisting}
+  2. \begin{lstlisting}
+    SELECT suppliers.sname FROM suppliers WHERE suppliers.sname NOT IN(
+      (SELECT parts.pid FROM parts)
+      MINUS
+      (SELECT catalog.pid FROM catalog WHERE catalog.pid = parts.pid)
+    )
+  \end{lstlisting}
+  3. \begin{lstlisting}
+    SELECT suppliers.sname FROM suppliers WHERE suppliers.sname NOT IN(
+      (SELECT parts.pid FROM parts WHERE parts.color = red)
+      MINUS
+      (SELECT catalog.pid FROM catalog,parts WHERE catalog.pid = parts.pid AND parts.color = red)
+    )
+  \end{lstlisting}
+  4. \begin{lstlisting}
+    SELECT pnames FROM Parts P, Suppliers S, Catalog C WHERE
+      S.sname = 'Acme Widget Suppliers'
+      AND S.sid = C.sid
+      AND C.pid = P.pid
+  \end{lstlisting}
+  5. \begin{lstlisting}
+    SELECT C.sid FROM Catalog C
+    WHERE C.cost > (
+      SELECT average(CC.cost) FROM Catalog CC
+      WHERE C.pid = CC.pid
+    )
+  \end{lstlisting}
+  6. \begin{lstlisting}
+    SELECT S.sname, FROM Suppliers S, Parts P, Catalog C
+    WHERE C.pid = P.pid AND
+          S.sid = C.sid AND
+          C.cost = (
+            SELECT max(CC.cost) FROM Catalog CC WHERE CC.pid = P.pid
+          )
+  \end{lstlisting}
+  7. \begin{lstlisting}
+    SELECT DISTINCT C.sid FROM Parts P, Catalog C
+    WHERE C.pid = P.pid AND
+          P.color = 'red'
+  \end{lstlisting}
+  8. \begin{lstlisting}
+    SELECT C.sid FROM Catalog C, Parts P
+      WHERE P.color = "red" AND
+            P.pid = C.pid
+    INTERSECT
+    SELECT C.sid FROM Catalog C, Parts P
+      WHERE P.color = "green" AND
+            P.pid = C.pid
+  \end{lstlisting}
+  9. \begin{lstlisting}
+      SELECT C.sid FROM Catalog C, Parts P
+        WHERE P.color = "red" AND
+              P.pid = C.pid
+      UNION
+      SELECT C.sid FROM Catalog C, Parts P
+        WHERE P.color = "green" AND
+              P.pid = C.pid
+  \end{lstlisting}
+  10.
+  \begin{lstlisting}
+    SELECT S.sname, count(*) AS PC FROM Suppliers S, Parts P, Catalog C
+      WHERE P.pid = C.pid AND
+            C.sid = S.sid
+      GROUP BY S.sname
+      HAVING P.color = 'green'
+  \end{lstlisting}
+  11.
+  \begin{lstlisting}
+    SELECT S.sname, max(C.cost) FROM (
+      SELECT S.sname, C.cost FROM Suppliers S, Catalog C, Parts P
+        WHERE P.pid = C.pid AND C.sid = S.sid
+        GROUP BY S.sname
+        HAVING p.color = 'green'
+      INTERSECT
+      SELECT S.sname, C.cost FROM Suppliers S, Catalog C, Parts P
+        WHERE P.pid = C.pid AND C.sid = S.sid
+        GROUP BY S.sname
+        HAVING p.color = 'red'
+    )
+    GROUP BY S.sname
+  \end{lstlisting}
 \end{problem}
 
 \begin{problem}{5.4}
