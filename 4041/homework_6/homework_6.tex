@@ -31,7 +31,20 @@
   be the commission that you are charged when you make $k$ trades. Show that,if $c_k = 0$ for all $k = 1,2
   \dots,n$,then the problem of finding the best sequence of exchanges from currency 1 to currency $n$ exhibits optimal
   substructure. Then show that if commissions ck are arbitrary values, then the problem of finding the best sequence of
-  exchanges from currency 1 to currency n does not necessarily exhibit optimal substructure.
+  exchanges from currency $1$ to currency $n$ does not necessarily exhibit optimal substructure.
+  \begin{solution}
+    The optimal substructure to the problem is such that $dr_{in}$ gets you to your desired currency from some currency
+    $i$ that is the optimal currency to trade to get the desired $n$ currency. Then there exists some optimal currency
+    $k$ such that $dr_{ki}$ will get you from $k$ currency to $i$ currency. Each subproblem is smaller so it exhibits
+    optimal substructure.
+
+    In the case where there is some arbitrary commission assigned to each trade each subproblem isn't necessarily any
+    smaller, so it does not necessarily exhibit optimal substructure. For example, there may be some sequence of k
+    trades that is optimal based on the exchange rates, but perhaps doing one more trade would get you a commission
+    break that would make up for the lack of optimality in exchange rates. Likewise you may have an optimal solution
+    based on the exchange rates but doing one fewer trade would save more money. Because of the arbitrary values of the
+    commission subproblems aren't necessarily any smaller.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{16.1-2}
