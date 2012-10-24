@@ -40,7 +40,7 @@
   prove that it yields an optimal solution.
   \begin{solution}
     This approach is greedy in the same way that the first approach is greedy. This time we're starting from the end and
-    working toward the beginning of the timeline. We have two cases for optimal solution. A solution that contains the
+    working toward the beginning of the time-line. We have two cases for optimal solution. A solution that contains the
     greedy choice and one that doesn't. In the case we have a solution without the greedy choice we simply swap the last
     activity to start with one that starts later.
 
@@ -49,7 +49,7 @@
     the greedy choice added back on to it so that there are no overlapping activities. The subproblem is solved the same
     way, so that each subproblem has a greedy choice and optimal structure. This is an inductive proof.
 
-    This works the same was as the original problem, only going the other direction (from the end of the timeline to the
+    This works the same was as the original problem, only going the other direction (from the end of the time-line to the
     beginning). It exhibits the same optimal substructure.
   \end{solution}
 \end{problem}
@@ -63,7 +63,7 @@
   \begin{solution}
     Below is a Ruby implementation that demonstrates selecting the earliest start time gets you more events than the
     other methods. The reason why the other methods fail is because they do not exhibit an optimal substructure where
-    you can select a greedy choice each subproblem. The shortest durating tells you nothing about the placement of the
+    you can select a greedy choice each subproblem. The shortest duration tells you nothing about the placement of the
     activities so there is no optimal substructure. The same is true with the events with fewest overlaps. There is no
     structure that actually places the activities in some optimal way.
     \lstinputlisting[breaklines=true]{16_1_3.rb}
