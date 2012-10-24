@@ -1,5 +1,6 @@
 \input{../../preamble.tex}
 \input{../class_info.tex}
+\usepackage{marginnote}
 
 \sethomeworknumber{6}
 
@@ -8,7 +9,16 @@
 \homeworkheader{\classnameandsection}
 
 \begin{problem}{15.2-3}
-  Use the substitution method to show that the solution to the recurrence (15.6) is $\Omega(2^n)$.
+  Use the substitution method to show that the solution to the recurrence (15.6) is $\Omega(2^n)$
+  \marginnote{I'm not sure this is correct but I ran out of time to work on this assignment.}
+  \begin{solution}
+    \begin{align*}
+      P(n) &= P(1)P(n-1) + P(2)P(n-2) + \ldots + P(n-1)P(1) \\
+           &= \displaystyle\sum\limits_{k = 1}^{n - 1} {n \choose k } \\
+           &= 2^n - 2 \\
+           &= \Omega(2^n)
+    \end{align*}
+  \end{solution}
 \end{problem}
 
 \begin{problem}{15.3-6}
