@@ -1,0 +1,86 @@
+\input{../../preamble.tex}
+\input{../class_info.tex}
+\usepackage{marginnote}
+
+\sethomeworknumber{6}
+
+\begin{document}
+
+\homeworkheader{\classnameandsection}
+
+\begin{problem}{15.2-3}
+  Use the substitution method to show that the solution to the recurrence (15.6) is $\Omega(2^n)$
+  \marginnote{I'm not sure this is correct but I ran out of time to work on this assignment.}
+  \begin{solution}
+    \begin{align*}
+      P(n) &= P(1)P(n-1) + P(2)P(n-2) + \ldots + P(n-1)P(1) \\
+           &= \displaystyle\sum\limits_{k = 1}^{n - 1} {n \choose k } \\
+           &= 2^n - 2 \\
+           &= \Omega(2^n)
+    \end{align*}
+  \end{solution}
+\end{problem}
+
+\begin{problem}{15.3-6}
+  Imagine that you wish to exchange one currency for another. You realize that instead of directly exchanging one
+  currency for another, you might be better off making a series of trades through other currencies, winding up with the
+  currency you want. Suppose that you can trade $n$ different currencies, numbered $1, 2, \ldots, n$, where you start
+  with currency 1 and wish to wind up with currency $n$. You are given, for each pair of currencies $i$ and $j$ , an
+  exchange rate $r_{ij}$, meaning that if you start with $d$ units of currency $i$, you can trade for $dr_{ij}$ units of
+  currency $j$. A sequence of trades may entail a commission, which depends on the number of trades you make. Let $c_k$
+  be the commission that you are charged when you make $k$ trades. Show that,if $c_k = 0$ for all $k = 1,2
+  \dots,n$,then the problem of finding the best sequence of exchanges from currency 1 to currency $n$ exhibits optimal
+  substructure. Then show that if commissions ck are arbitrary values, then the problem of finding the best sequence of
+  exchanges from currency $1$ to currency $n$ does not necessarily exhibit optimal substructure.
+  \begin{solution}
+    The optimal substructure to the problem is such that $dr_{in}$ gets you to your desired currency from some currency
+    $i$ that is the optimal currency to trade to get the desired $n$ currency. Then there exists some optimal currency
+    $k$ such that $dr_{ki}$ will get you from $k$ currency to $i$ currency. Each subproblem is smaller so it exhibits
+    optimal substructure.
+
+    In the case where there is some arbitrary commission assigned to each trade each subproblem isn't necessarily any
+    smaller, so it does not necessarily exhibit optimal substructure. For example, there may be some sequence of k
+    trades that is optimal based on the exchange rates, but perhaps doing one more trade would get you a commission
+    break that would make up for the lack of optimality in exchange rates. Likewise you may have an optimal solution
+    based on the exchange rates but doing one fewer trade would save more money. Because of the arbitrary values of the
+    commission subproblems aren't necessarily any smaller.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{16.1-2}
+  Suppose that instead of always selecting the first activity to finish, we instead select the last activity to start
+  that is compatible with all previously selected activities. Describe how this approach is a greedy algorithm, and
+  prove that it yields an optimal solution.
+  \begin{solution}
+    This approach is greedy in the same way that the first approach is greedy. This time we're starting from the end and
+    working toward the beginning of the time-line. We have two cases for optimal solution. A solution that contains the
+    greedy choice and one that doesn't. In the case we have a solution without the greedy choice we simply swap the last
+    activity to start with one that starts later.
+
+    This then has an optimal substructure just like the first approach. We take a list of sorted events, and find the
+    greedy choice which is the last activity to start. Then the optimal structure is the solution to the subproblem with
+    the greedy choice added back on to it so that there are no overlapping activities. The subproblem is solved the same
+    way, so that each subproblem has a greedy choice and optimal structure. This is an inductive proof.
+
+    This works the same was as the original problem, only going the other direction (from the end of the time-line to the
+    beginning). It exhibits the same optimal substructure.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{16.1-3}
+  Not just any greedy approach to the activity-selection problem produces a maximum-size set of mutually compatible
+  activities. Give an example to show that the approach of selecting the activity of least duration from among those
+  that are compatible with previously selected activities does not work. Do the same for the approaches of always
+  selecting the compatible activity that overlaps the fewest other remaining activities and always selecting the
+  compatible remaining activity with the earliest start time.
+  \begin{solution}
+    Below is a Ruby implementation that demonstrates selecting the earliest start time gets you more events than the
+    other methods. The reason why the other methods fail is because they do not exhibit an optimal substructure where
+    you can select a greedy choice each subproblem. The shortest duration tells you nothing about the placement of the
+    activities so there is no optimal substructure. The same is true with the events with fewest overlaps. There is no
+    structure that actually places the activities in some optimal way.
+    \lstinputlisting[breaklines=true]{16_1_3.rb}
+  \end{solution}
+\end{problem}
+
+\end{document}
