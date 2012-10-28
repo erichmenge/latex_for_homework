@@ -46,6 +46,21 @@ B. You then receive a payoff $\displaystyle\prod\limits_{i = 1}^n a_i^{b_i}$ . G
 
 \begin{problem}{16.3-2}
   Prove that a binary tree that is not full cannot correspond to an optimal prefix code.
+  \begin{solution}
+    \begin{proof}
+      An optimal prefix code saves the most space and therefore corresponds to a tree of minimum depth. \\ Assume that a
+      not-full binary tree corresponds to an optimal prefix code. \\ If we have a non-full sub-tree such as in the
+      figure below, we can take one of nodes and move it up, shortening the path of that node without affecting the
+      other nodes in the tree. Because the shortened path is more efficient, we conclude by contradiction that the non-
+      full tree must not correspond to an optimal prefix code. \qedhere
+      \begin{figure}[H]
+        \centering
+        \caption{Trees}
+        \subfigure[Non-full Tree]{\includegraphics[scale=.75]{problem_16_3_2_a.eps}}
+        \subfigure[Full Tree]{\includegraphics[scale=.75]{problem_16_3_2_b.eps}}
+      \end{figure}
+    \end{proof}
+  \end{solution}
 \end{problem}
 
 \begin{problem}{16.3-3}
