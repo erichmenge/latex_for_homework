@@ -11,6 +11,30 @@
   Describe an efficient algorithm that, given a set $\{ x_1,x_2,\ldots, x_n \}$ of points on the real line, determines
   the smallest set of unit-length closed intervals that contains all of the given points. Argue that your algorithm is
   correct.
+  \begin{solution}
+    We can implement a greedy alogorith to solve this problem much like the scheduling problem. Instead of selecting the
+    activity that finishes first we can select the number that comes first on the number line.
+
+    With our number line we have two optimal situations. One where there is an optimal solution in which the greedy
+    choice is first, and one where we have an optimal solution where the greedy choice is not first. In the case the
+    optimal solution doesn't have the greedy choice first, we can simply replace the first unit-length interval with the
+    greedy choice.
+
+    So first we do a quicksort on the numbers so that they are in order. We select the first number in sorted order and
+    so then the interval $[x_1, x_1 + 1]$ is our greedy choice. The optimal solution then is the optimal solution to the
+    subproblem with the greedy choice added onto it. The greedy choice then of our subproblem is the interval $[x_i, x_i
+    + 1]$ of the next number that isn't overlapping.
+
+    So our algorithm takes a sorted list, selects the first number and creates an interval $[x_1, x_1 + 1]$. It then
+    iterates over the next $i$ numbers until it finds a number that isn't within the first interval. That is the second
+    interval $[x_i, x_i + 1]$, it then continues to iterate this time comparing against the second interval. Since they
+    are in sorted order we only need concern ourselves with the latest interval, the greedy choice. This is a fast
+    algorithm, running in linear time.
+
+    This algorithm is correct because the first interval starts at the first number and wastes no space to the left on
+    the number line. Since each subproblem is handled this way, wasting no space on the left, the number of intervals is
+    the smallest it can be (because there is no wasted space.) It is a linear time algorithm so it is very efficient.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{16.2-7}
