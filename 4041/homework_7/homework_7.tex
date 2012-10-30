@@ -42,6 +42,24 @@
 however you like. After reordering, let $a_i$ be the $i$th element of set $A$, and let $b_i$ be the $i$th element of set
 B. You then receive a payoff $\displaystyle\prod\limits_{i = 1}^n a_i^{b_i}$ . Give an algorithm that will maximize your
    payoff. Prove that your algorithm maximizes the payoff, and state its running time.
+   \begin{solution}
+     The list of $A$ is the base and the list of $B$ is then the exponents. Since we can sort each list however we want
+     we want to select a greedy choice such that the base is the largest and the exponent is the largest. This gives us
+     the largest possible number. Then the optimal solution to the problem is the largest number of $A$ to the power of
+     the largest number of $B$ multiplied with the subproblem with those greedy choices removed. Clearly the largest
+     possible numbers multiplied together is the maximum profit.
+     \begin{figure}[H]
+       \centering
+       \caption{Ruby Implementation of Described Algorithm}
+       \lstinputlisting{maximize_profit.rb}
+     \end{figure}
+     \noindent Analysis of run-time:
+     \br
+     Line 1: Quick sort is $\Theta(n \lg n)$ \\
+     Line 2: Quick sort is $\Theta(n \lg n)$ \\
+     Line 3: Map is $O(n)$, inject is $O(n)$, arithmetic is $O(1)$. Both of these methods simply iterate over the list  of $n$ numbers. \\
+     Total: $\Theta(n \lg n) + \Theta(n \lg n) + O(n) + O(n) = \Theta(n \lg n)$
+   \end{solution}
 \end{problem}
 
 \begin{problem}{16.3-2}
