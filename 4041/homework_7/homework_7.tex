@@ -65,12 +65,34 @@ B. You then receive a payoff $\displaystyle\prod\limits_{i = 1}^n a_i^{b_i}$ . G
   \end{solution}
 \end{problem}
 
-\begin{problem}{16.3-3}
+\newpage \begin{problem}{16.3-3}
   What is an optimal Huffman code for the following set of frequencies, based on the first 8 Fibonacci numbers?
   \br
   a:1 b:1 c:2 d:3 e:5 f:8 g:13 h:21
   \br
   Can you generalize your answer to find the optimal code when the frequencies are the first n Fibonacci numbers?
+  \begin{solution}
+    Solution to first 8: \\
+    a 1111111 \\
+    b 1111110 \\
+    c 111110 \\
+    d 11110 \\
+    e 1110 \\
+    f 110 \\
+    g 10 \\
+    h 0\\
+    General Case:
+    \br
+    first: $1^{n-1}$ (where in this case exponents mean number of charcters) \\
+    second: $1^{n-2}0$ \\
+    third: $1^{n-3}0$ \\
+    . \\
+    . \\
+    . \\
+    $(n-1)^{th}$: 10 \\
+    $n^{th}$: 0 \\
+    So in general the first and second occurences (which have least frequence) have a length of $n-1$ bits, and then each subsequent character shifts a bit off.
+  \end{solution}
 \end{problem}
 
 
