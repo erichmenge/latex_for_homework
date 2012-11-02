@@ -1,0 +1,117 @@
+\input{../../preamble.tex}
+\input{../class_info.tex}
+
+\sethomeworknumber{7}
+
+\begin{document}
+
+\homeworkheader{\classnameandsection}
+
+\begin{problem}{16.2-5}
+  Describe an efficient algorithm that, given a set $\{ x_1,x_2,\ldots, x_n \}$ of points on the real line, determines
+  the smallest set of unit-length closed intervals that contains all of the given points. Argue that your algorithm is
+  correct.
+  \begin{solution}
+    We can implement a greedy alogorith to solve this problem much like the scheduling problem. Instead of selecting the
+    activity that finishes first we can select the number that comes first on the number line.
+
+    With our number line we have two optimal situations. One where there is an optimal solution in which the greedy
+    choice is first, and one where we have an optimal solution where the greedy choice is not first. In the case the
+    optimal solution doesn't have the greedy choice first, we can simply replace the first unit-length interval with the
+    greedy choice.
+
+    So first we do a quicksort on the numbers so that they are in order. We select the first number in sorted order and
+    so then the interval $[x_1, x_1 + 1]$ is our greedy choice. The optimal solution then is the optimal solution to the
+    subproblem with the greedy choice added onto it. The greedy choice then of our subproblem is the interval $[x_i, x_i
+    + 1]$ of the next number that isn't overlapping.
+
+    So our algorithm takes a sorted list, selects the first number and creates an interval $[x_1, x_1 + 1]$. It then
+    iterates over the next $i$ numbers until it finds a number that isn't within the first interval. That is the second
+    interval $[x_i, x_i + 1]$, it then continues to iterate this time comparing against the second interval. Since they
+    are in sorted order we only need concern ourselves with the latest interval, the greedy choice. This is a fast
+    algorithm, running in linear time.
+
+    This algorithm is correct because the first interval starts at the first number and wastes no space to the left on
+    the number line. Since each subproblem is handled this way, wasting no space on the left, the number of intervals is
+    the smallest it can be (because there is no wasted space.) It is a linear time algorithm so it is very efficient.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{16.2-7}
+  Suppose you are given two sets $A$ and $B$, each containing n positive integers. You can choose to reorder each set
+however you like. After reordering, let $a_i$ be the $i$th element of set $A$, and let $b_i$ be the $i$th element of set
+B. You then receive a payoff $\displaystyle\prod\limits_{i = 1}^n a_i^{b_i}$ . Give an algorithm that will maximize your
+   payoff. Prove that your algorithm maximizes the payoff, and state its running time.
+   \begin{solution}
+     The list of $A$ is the base and the list of $B$ is then the exponents. Since we can sort each list however we want
+     we want to select a greedy choice such that the base is the largest and the exponent is the largest. This gives us
+     the largest possible number. Then the optimal solution to the problem is the largest number of $A$ to the power of
+     the largest number of $B$ multiplied with the subproblem with those greedy choices removed. Clearly the largest
+     possible numbers multiplied together is the maximum profit.
+     \begin{figure}[H]
+       \centering
+       \caption{Ruby Implementation of Described Algorithm}
+       \lstinputlisting{maximize_profit.rb}
+     \end{figure}
+     \noindent Analysis of run-time:
+     \br
+     Line 1: Quick sort is $\Theta(n \lg n)$ \\
+     Line 2: Quick sort is $\Theta(n \lg n)$ \\
+     Line 3: Map is $O(n)$, inject is $O(n)$, arithmetic is $O(1)$. Both of these methods simply iterate over the list  of $n$ numbers. \\
+     Total: $\Theta(n \lg n) + \Theta(n \lg n) + O(n) + O(n) = \Theta(n \lg n)$
+   \end{solution}
+\end{problem}
+
+\begin{problem}{16.3-2}
+  Prove that a binary tree that is not full cannot correspond to an optimal prefix code.
+  \begin{solution}
+    \begin{proof}
+      An optimal prefix code saves the most space and therefore corresponds to a tree of minimum depth. \\ Assume that a
+      not-full binary tree corresponds to an optimal prefix code. \\ If we have a non-full sub-tree such as in the
+      figure below, we can take one of nodes and move it up, shortening the path of that node without affecting the
+      other nodes in the tree. Because the shortened path is more efficient, we conclude by contradiction that the non-
+      full tree must not correspond to an optimal prefix code. \qedhere
+      \begin{figure}[H]
+        \centering
+        \caption{Trees}
+        \subfigure[Non-full Tree]{\includegraphics[scale=.75]{problem_16_3_2_a.eps}}
+        \subfigure[Full Tree]{\includegraphics[scale=.75]{problem_16_3_2_b.eps}}
+      \end{figure}
+    \end{proof}
+    It should be pointed out that the figure is only an example, but that it works in a general case. If a node can be
+    moved up to a higher level, the tree isn't optimal.
+  \end{solution}
+\end{problem}
+
+\newpage \begin{problem}{16.3-3}
+  What is an optimal Huffman code for the following set of frequencies, based on the first 8 Fibonacci numbers?
+  \br
+  a:1 b:1 c:2 d:3 e:5 f:8 g:13 h:21
+  \br
+  Can you generalize your answer to find the optimal code when the frequencies are the first n Fibonacci numbers?
+  \begin{solution}
+    Solution to first 8: \\
+    a 1111111 \\
+    b 1111110 \\
+    c 111110 \\
+    d 11110 \\
+    e 1110 \\
+    f 110 \\
+    g 10 \\
+    h 0\\
+    General Case:
+    \br
+    first: $1^{n-1}$ (where in this case exponents mean number of characters) \\
+    second: $1^{n-2}0$ \\
+    third: $1^{n-3}0$ \\
+    . \\
+    . \\
+    . \\
+    $(n-1)^{th}$: 10 \\
+    $n^{th}$: 0 \\
+    So in general the first and second occurences (which have least frequence) have a length of $n-1$ bits, and then each subsequent character shifts a bit off.
+  \end{solution}
+\end{problem}
+
+
+\end{document}
