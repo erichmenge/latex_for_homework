@@ -43,13 +43,20 @@
 
 \begin{problem}{3}
   \begin{solution}
-
+    Because we don't know the depth of the tree on input $s_i$ simply running the machine on each string is not safe
+    because the machine may find itself running forever if there are any infinite loops. That is why the correct
+    definition uses $i$ steps on each input, so that a single input doesn't prevent the rest of the strings from being
+    enumerated.
   \end{solution}
 \end{problem}
 
 \begin{problem}{4}
   \begin{solution}
-
+    The problem with this description is that it involves an infinite set. ``evaluate p on all of these settings'',
+    requires infinite iteration, because the set of integers in this case is not bounded. So the machine would run
+    forever, but step 3 asks us to reject if it doesn't evaluate to zero. It is not possible to build a machine that
+    iterates over an infinite set in a finite amount of steps.  Therefore the description is not of a legitimate Turing
+    machine.
   \end{solution}
 \end{problem}
 
