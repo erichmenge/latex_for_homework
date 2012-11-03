@@ -8,7 +8,16 @@
 
 \begin{problem}{1}
   \begin{solution}
-
+    $M =$ ``
+    \begin{enumerate}
+      \item Scan the tape starting at the beginning from left to right, if no $1$s or $0$s are found, accept.\\
+      \item Move the head back to the beginning. Scan from left to right looking for a $1$, if none is found, reject, else cross it off and move back to the beginning of the tape.\\
+      \item Scan from left to right looking for a zero, if none is found, reject, otherwise cross it off and continue.\\
+      \item Continue scanning from left to right looking for a zero, if none is found, reject, otherwise cross it off and
+      move the head back to the beginning.\\
+      \item Repeat the above steps.
+    \end{enumerate}
+    ''
   \end{solution}
 \end{problem}
 
