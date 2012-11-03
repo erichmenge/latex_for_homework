@@ -23,7 +23,21 @@
 
 \begin{problem}{2}
   \begin{solution}
-
+    \begin{align*}
+      M &= (Q, \Sigma, \Gamma, \delta, q_0, q_9,q_{\text{reject}}) \\
+      Q &= \{ q_0,q_1,q_2,q_3,q_4,q_5,q_6,q_7,q_8,q_9 \} \\
+      \Sigma &= \{ 0, 1 \}\\
+      \Gamma &= \{ x, \$ \} \cup \Sigma \\
+      \delta &\text{ is shown in the figure below with the state diagram.}
+    \end{align*}
+    \begin{figure}[H]
+      \centering
+      \caption{State Diagram}
+      \includegraphics[scale=.6]{problem_2.png}
+    \end{figure}
+    Initially if the tape is blank accept, as zero $0$s is twice as many as zero $1$s. Otherwise, append a \$ onto the
+    tape so the machine knows where the beginning of the tape is. It can then easily mark off pairs of 0s for each 1 it
+    encounters. After each cycle, it rewinds the tape to the \$ so that it starts at the beginning.
   \end{solution}
 \end{problem}
 
