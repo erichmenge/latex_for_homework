@@ -17,6 +17,28 @@
 \begin{problem}{16.3-7}
   Generalize Huffman's algorithm to ternary codewords (i.e., codewords using the symbols 0, 1, and 2), and prove that it
   yields optimal ternary codes.
+  \begin{solution}
+    \begin{lstlisting}
+      HUFFMAN(C)
+        n = |C|
+        Q = C
+        for i = 1 to n - 1
+          allocate a new node z
+          z.left = w = Extract-Min(Q)
+          z.mid = x = Extract-Min(Q)
+          z.right = y = Extract-Min(Q)
+          z.freq = x.freq + y.freq + z.freq
+          Insert(Q, z)
+        return Extract-Min(Q)
+    \end{lstlisting}
+    \begin{proof}
+      This modified algorithim works the same way as the original, only using a ternary tree instead of a binary tree.
+      We can still construct the tree in such a way that the minimum frequency characters lie at the bottom of this
+      ternary tree using a modified priority queue that works on ternary trees. Then the greedy choice is the root of
+      this lowest freqency sub-tree with its three child nodes removed. Which means the optimal solution is the solution
+      to the remaining tree with the greedy choice added back on.  This is done all the way up the tree as before.
+    \end{proof}
+  \end{solution}
 \end{problem}
 
 \begin{problem}{16.3-8}
