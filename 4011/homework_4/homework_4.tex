@@ -70,11 +70,11 @@
   \begin{solution}
     This problem asks us to show that this type of Turing machine recognizes the class of Turing-recognizable languages.
     So we need to show equivalence from both directions.
-
+    \br
     A TM with an infinite tape in both directions is easy to show equivalence with a standard Turing Machine.  All that
     we need to do is add a special symbol to the beginning of the input symbols and have the doubly infinite Turing
     machine stop reading left when it encounters this special symbol.
-
+    \br
     The other direction is more difficult, but can be done similarly.  We could use the k-tape Turing machine discussed
     in class, in this case with k set to 2.  One tape would represent symbols to the left, the other to the right. The
     input string would be on one tape, and when the head moves left of the first symbol on the tape the machine would
@@ -86,7 +86,11 @@
 
 \begin{problem}{7}
   \begin{solution}
-
+    Because we can't move left, and don't know what is to the right, there is no way to maintain the functionality of
+    the traditional Turing machine with this variant.  Further, this machine functionally describes a NFA, which we know
+    to be functionally weaker than a TM. The machine can move forward, processing the input, but never backward on the
+    string. Since there is no stack, there is no means of storing any of the inputs we have read. Once input is
+    consumed, it cannot be recovered.
   \end{solution}
 \end{problem}
 
