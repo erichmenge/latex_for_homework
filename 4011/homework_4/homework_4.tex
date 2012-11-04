@@ -68,7 +68,19 @@
 
 \begin{problem}{6}
   \begin{solution}
+    This problem asks us to show that this type of Turing machine recognizes the class of Turing-recognizable languages.
+    So we need to show equivalence from both directions.
 
+    A TM with an infinite tape in both directions is easy to show equivalence with a standard Turing Machine.  All that
+    we need to do is add a special symbol to the beginning of the input symbols and have the doubly infinite Turing
+    machine stop reading left when it encounters this special symbol.
+
+    The other direction is more difficult, but can be done similarly.  We could use the k-tape Turing machine discussed
+    in class, in this case with k set to 2.  One tape would represent symbols to the left, the other to the right. The
+    input string would be on one tape, and when the head moves left of the first symbol on the tape the machine would
+    switch to the second tape which would be blank. When the doubly infinite machine is instructed to move left, the
+    head on this tape would move right.  Similarly when the doubly infinite machine is instructed to move right, the
+    head would move left until it hit the bound, and then switch back to the other tape.
   \end{solution}
 \end{problem}
 
