@@ -6,19 +6,34 @@
 \begin{document}
 
 \homeworkheader{\classnameandsection}
+
 \begin{problem}{16.3-6}
+  Suppose we have an optimal prefix code on a set $C = \{0,1,\ldots,n-1\}$ of characters and we wish to transmit this
+  code using as few bits as possible. Show how to represent any optimal prefix code on $C$ using only $2n - 1 + n \lceil
+  \lg n \rceil$ bits. (Hint: Use $2n - 1$ bits to specify the structure of the tree, as discovered by a walk of the
+  tree.)
 \end{problem}
 
 \begin{problem}{16.3-7}
+  Generalize Huffman's algorithm to ternary codewords (i.e., codewords using the symbols 0, 1, and 2), and prove that it
+  yields optimal ternary codes.
 \end{problem}
 
 \begin{problem}{16.3-8}
+  Suppose that a data file contains a sequence of 8-bit characters such that all 256 characters are about equally
+  common: the maximum character frequency is less than twice the minimum character frequency. Prove that Huffman coding
+  in this case is no more efficient than using an ordinary 8-bit fixed-length code.
 \end{problem}
 
 \begin{problem}{23.1-1}
+  Let $(u,v)$ be a minimum-weight edge in a connected graph G. Show that $(u,v)$ belongs to some minimum spanning tree
+  of G.
 \end{problem}
 
 \begin{problem}{23.1-5}
+  Let $e$ be a maximum-weight edge on some cycle of connected graph $G = (V,E)$. Prove that there is a minimum spanning
+  tree of $G' = (V,E - \{e\})$ that is also a minimum spanning tree of G. That is, there is a minimum spanning tree of G
+  that does not include $e$.
 \end{problem}
 
 \end{document}
