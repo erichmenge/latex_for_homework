@@ -96,7 +96,40 @@
 
 \begin{problem}{8}
   \begin{solution}
-
+    b. If we have two turing recognizable languages, recognized by TM $M_A$ and TM $M_B$ we can describe a machine
+       recognizing a third language that is the concatination of the two. Thus proving that the collection of turing
+       machines is closed under concatination.
+    \br
+    Let $M_{concat}$ be a turing machine which $=$``
+      \begin{enumerate}
+        \item  $\forall w \in L(M_{concat})$ divide the input into two parts $w_Aw_B$ \\
+        \item Step by step alternate running each symbol of $w_a$ through $M_A$ and each symbol of $w_b$ through $M_B$. \\
+        \item If either machine rejects, $M_{concat}$ rejects \\
+        \item If both machines accept, $M_{concat}$ accepts.
+      \end{enumerate}
+    ''
+    \br
+    c. We can can describe a turing recognizable machine, $TM^*$ that represents the kleene star operation of an
+       existing turing recognizable machine, thus proving that turing machines are closed under star.
+    \br
+    Let $TM^* =$ ``
+      \begin{enumerate}
+        \item On a blank tape, accept. \\
+        \item Partition the input into $w \in L(TM)$ \\
+        \item For $i..n$ steps, step by step, run each symbol up to $i$ from each partition through the machine $TM$ \\
+        \item Rewind the tape and move back to the start state of TM for each partition \\
+        \item If any step of any partition causes TM to reject, $TM^*$ rejects. \\
+        \item If all runs of $TM$ accept, $TM^*$ accepts.
+      \end{enumerate}
+    ''
+    \br
+    d. Intersection is very similar to union. We can describe a machine that accepts the intersection of $M_A$ and $M_B$ as follows.
+    \br Let $TM_{intersect} =$ ``
+      \begin{enumerate}
+        \item Step by step run each symbol of the input through $M_A$ and $M_B$, alternating back and forth. \\
+        \item If both accept, accept. If either reject, reject.
+      \end{enumerate}
+    ''
   \end{solution}
 \end{problem}
 
