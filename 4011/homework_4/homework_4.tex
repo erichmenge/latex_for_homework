@@ -1,0 +1,163 @@
+\input{../../preamble.tex}
+\input{../class_info.tex}
+
+\sethomeworknumber{4}
+
+\begin{document}
+\homeworkheader{\classnameandsection}
+
+\begin{problem}{1}
+  \begin{solution}
+    $M =$ ``
+    \begin{enumerate}
+      \item Scan the tape starting at the beginning from left to right, if no $1$s or $0$s are found, accept.\\
+      \item Move the head back to the beginning. Scan from left to right looking for a $1$, if none is found, reject, else cross it off and move back to the beginning of the tape.\\
+      \item Scan from left to right looking for a zero, if none is found, reject, otherwise cross it off and continue.\\
+      \item Continue scanning from left to right looking for a zero, if none is found, reject, otherwise cross it off and
+      move the head back to the beginning.\\
+      \item Repeat the above steps.
+    \end{enumerate}
+    ''
+  \end{solution}
+\end{problem}
+
+\begin{problem}{2}
+  \begin{solution}
+    \begin{align*}
+      M &= (Q, \Sigma, \Gamma, \delta, q_0, q_9,q_{\text{reject}}) \\
+      Q &= \{ q_0,q_1,q_2,q_3,q_4,q_5,q_6,q_7,q_8,q_9 \} \\
+      \Sigma &= \{ 0, 1 \}\\
+      \Gamma &= \{ x, \$ \} \cup \Sigma \\
+      \delta &\text{ is shown in the figure below with the state diagram.}
+    \end{align*}
+    \begin{figure}[H]
+      \centering
+      \caption{State Diagram}
+      \includegraphics[scale=.6]{problem_2.png}
+    \end{figure}
+    Initially if the tape is blank accept, as zero $0$s is twice as many as zero $1$s. Otherwise, append a \$ onto the
+    tape so the machine knows where the beginning of the tape is. It can then easily mark off pairs of 0s for each 1 it
+    encounters. After each cycle, it rewinds the tape to the \$ so that it starts at the beginning.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{3}
+  \begin{solution}
+    Because we don't know the depth of the tree on input $s_i$ simply running the machine on each string is not safe
+    because the machine may find itself running forever if there are any infinite loops. That is why the correct
+    definition uses $i$ steps on each input, so that a single input doesn't prevent the rest of the strings from being
+    enumerated.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{4}
+  \begin{solution}
+    The problem with this description is that it involves an infinite set. ``evaluate p on all of these settings'',
+    requires infinite iteration, because the set of integers in this case is not bounded. So the machine would run
+    forever, but step 3 asks us to reject if it doesn't evaluate to zero. It is not possible to build a machine that
+    iterates over an infinite set in a finite amount of steps.  Therefore the description is not of a legitimate Turing
+    machine.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{5}
+  \begin{solution}
+    \begin{itemize}
+      \item Because a stack and a tape are not all that much different, it is rather easy to simulate a k-PDA with a
+      Turing Machine.  In the interest of simplicity we can simulate a k-PDA with a (k + 1)-tape Turing Machine which is
+      equivalent in power to a single tape Turing Machine.
+      $TM_{k-PDA} = $ ``
+      \begin{enumerate}
+        \item Each stack of the k-pda will be represented by a tape, starting out blank. \\
+        \item The input string will be on the last tape. \\
+        \item Scan the input tape from left to right, writing symbols to the respective tapes as the k-PDA pushes to the corresponding stack. \\
+        \item If the k-PDA pops, read the current symbol, write a blank, and move the head left.
+      \end{enumerate}
+      '' \\
+      \item As before, we can do something similar to simulate a TM with a 2-PDA. We need two stacks.
+      $2-PDA_{TM} =$ ``
+        \begin{enumerate}
+          \item Push a \$ on to each stack. \\
+          \item Read each symbol of the input string and push it onto the second stack. \\
+          \item Since PDAs are LIFO, we then pop all symbols until we encounter \$ off the second stack and push it onto the fist.  The first stack now corresponds to the starting tape of the turing machine. \\
+          \item We can now simulate the turing machine, for each head move right we will pop the symbol from the first stack and push it onto the second stack. \\
+          \item Similarly, for each move left, pop a symbol from the second stack and push it onto the first. \\
+          \item Because the input is consumed on the stacks all transitions of the PDA are epsilon transitions.
+        \end{enumerate}
+      ''
+    \end{itemize}
+  \end{solution}
+\end{problem}
+
+\begin{problem}{6}
+  \begin{solution}
+    This problem asks us to show that this type of Turing machine recognizes the class of Turing-recognizable languages.
+    So we need to show equivalence from both directions.
+    \br
+    A TM with an infinite tape in both directions is easy to show equivalence with a standard Turing Machine.  All that
+    we need to do is add a special symbol to the beginning of the input symbols and have the doubly infinite Turing
+    machine stop reading left when it encounters this special symbol.
+    \br
+    The other direction is more difficult, but can be done similarly.  We could use the k-tape Turing machine discussed
+    in class, in this case with k set to 2.  One tape would represent symbols to the left, the other to the right. The
+    input string would be on one tape, and when the head moves left of the first symbol on the tape the machine would
+    switch to the second tape which would be blank. When the doubly infinite machine is instructed to move left, the
+    head on this tape would move right.  Similarly when the doubly infinite machine is instructed to move right, the
+    head would move left until it hit the bound, and then switch back to the other tape.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{7}
+  \begin{solution}
+    Because we can't move left, and don't know what is to the right, there is no way to maintain the functionality of
+    the traditional Turing machine with this variant.  Further, this machine functionally describes a NFA, which is the
+    class of regular languages, which we know to be functionally weaker than a TM. The machine can move forward,
+    processing the input, but never backward on the string. Since there is no stack, there is no means of storing any of
+    the input we have consumed.
+
+    Because inputs that are consumed cannot be later recovered, this is a weaker machine than the standard Turing
+    Machine.  A Turing Machine can recognize $\{ a^nb^n \}$ but an NFA cannot because it has no way of remembering how
+    many $a$s it has seen.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{8}
+  \begin{solution}
+    b. If we have two turing recognizable languages, recognized by TM $M_A$ and TM $M_B$ we can describe a machine
+       recognizing a third language that is the concatination of the two. Thus proving that the collection of turing
+       machines is closed under concatination.
+    \br
+    Let $M_{concat}$ be a turing machine which $=$``
+      \begin{enumerate}
+        \item  $\forall w \in L(M_{concat})$ divide the input into two parts $w_Aw_B$ \\
+        \item Step by step alternate running each symbol of $w_a$ through $M_A$ and each symbol of $w_b$ through $M_B$. \\
+        \item If either machine rejects, $M_{concat}$ rejects \\
+        \item If both machines accept, $M_{concat}$ accepts.
+      \end{enumerate}
+    ''
+    \br
+    c. We can can describe a turing recognizable machine, $TM^*$ that represents the kleene star operation of an
+       existing turing recognizable machine, thus proving that turing machines are closed under star.
+    \br
+    Let $TM^* =$ ``
+      \begin{enumerate}
+        \item On a blank tape, accept. \\
+        \item Partition the input into $w \in L(TM)$ \\
+        \item For $i..n$ steps, step by step, run each symbol up to $i$ from each partition through the machine $TM$ \\
+        \item Rewind the tape and move back to the start state of TM for each partition \\
+        \item If any step of any partition causes TM to reject, $TM^*$ rejects. \\
+        \item If all runs of $TM$ accept, $TM^*$ accepts.
+      \end{enumerate}
+    ''
+    \br
+    d. Intersection is very similar to union. We can describe a machine that accepts the intersection of $M_A$ and $M_B$ as follows.
+    \br Let $TM_{intersect} =$ ``
+      \begin{enumerate}
+        \item Step by step run each symbol of the input through $M_A$ and $M_B$, alternating back and forth. \\
+        \item If both accept, accept. If either reject, reject.
+      \end{enumerate}
+    ''
+  \end{solution}
+\end{problem}
+
+\end{document}
