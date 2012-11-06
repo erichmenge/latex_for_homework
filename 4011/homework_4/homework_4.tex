@@ -110,10 +110,14 @@
 \begin{problem}{7}
   \begin{solution}
     Because we can't move left, and don't know what is to the right, there is no way to maintain the functionality of
-    the traditional Turing machine with this variant.  Further, this machine functionally describes a NFA, which we know
-    to be functionally weaker than a TM. The machine can move forward, processing the input, but never backward on the
-    string. Since there is no stack, there is no means of storing any of the inputs we have read. Once input is
-    consumed, it cannot be recovered.
+    the traditional Turing machine with this variant.  Further, this machine functionally describes a NFA, which is the
+    class of regular languages, which we know to be functionally weaker than a TM. The machine can move forward,
+    processing the input, but never backward on the string. Since there is no stack, there is no means of storing any of
+    the input we have consumed.
+
+    Because inputs that are consumed cannot be later recovered, this is a weaker machine than the standard Turing
+    Machine.  A Turing Machine can recognize $\{ a^nb^n \}$ but an NFA cannot because it has no way of remembering how
+    many $a$s it has seen.
   \end{solution}
 \end{problem}
 
