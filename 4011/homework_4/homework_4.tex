@@ -77,12 +77,12 @@
       \item As before, we can do something similar to simulate a TM with a k-PDA. We need two stacks.
       $k-PDA_{TM} =$ ``
         \begin{enumerate}
-          \item Write a \$ on to each stack. \\
+          \item Push a \$ on to each stack. \\
           \item Read each symbol of the input string and push it onto the second stack. \\
           \item Since PDAs are LIFO, we then pop all symbols until we encounter \$ off the second stack and push it onto the fist.  The first stack now corresponds to the starting tape of the turing machine. \\
           \item We can now simulate the turing machine, for each head move right we will pop the symbol from the first stack and push it onto the right. \\
           \item Similarly, for each move left, pop a symbol from the second stack and push it onto the first. \\
-          \item Blank symbols can be modeled with epsilon transitions.
+          \item Because the input is consumed on the stacks all transitions of the PDA are epsilon transitions.
         \end{enumerate}
       ''
     \end{itemize}
