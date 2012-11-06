@@ -62,7 +62,30 @@
 
 \begin{problem}{5}
   \begin{solution}
-
+    \begin{itemize}
+      \item Because a stack and a tape are not all that much different, it is rather easy to simulate a k-PDA with a
+      Turing Machine.  In the interest of simplicity we can simulate a k-PDA with a (k + 1)-tape Turing Machine which is
+      equivalent in power to a single tape Turing Machine.
+      $TM_{k-PDA} = $ ``
+      \begin{enumerate}
+        \item Each stack of the k-pda will be represented by a tape, starting out blank. \\
+        \item The input string will be on the last tape. \\
+        \item Scan the input tape from left to right, writing symbols to the respective tapes as the k-PDA pushes to the corresponding stack. \\
+        \item If the k-PDA pops, read the current symbol, write a blank, and move the head left.
+      \end{enumerate}
+      '' \\
+      \item As before, we can do something similar to simulate a TM with a k-PDA. We need two stacks.
+      $k-PDA_{TM} =$ ``
+        \begin{enumerate}
+          \item Write a \$ on to each stack. \\
+          \item Read each symbol of the input string and push it onto the second stack. \\
+          \item Since PDAs are LIFO, we then pop all symbols until we encounter \$ off the second stack and push it onto the fist.  The first stack now corresponds to the starting tape of the turing machine. \\
+          \item We can now simulate the turing machine, for each head move right we will pop the symbol from the first stack and push it onto the right. \\
+          \item Similarly, for each move left, pop a symbol from the second stack and push it onto the first. \\
+          \item Blank symbols can be modeled with epsilon transitions.
+        \end{enumerate}
+      ''
+    \end{itemize}
   \end{solution}
 \end{problem}
 
