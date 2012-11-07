@@ -40,10 +40,10 @@
         return Extract-Min(Q)
     \end{lstlisting}
     \begin{proof}
-      This modified algorithim works the same way as the original, only using a ternary tree instead of a binary tree.
+      This modified algorithm works the same way as the original, only using a ternary tree instead of a binary tree.
       We can still construct the tree in such a way that the minimum frequency characters lie at the bottom of this
       ternary tree using a modified priority queue that works on ternary trees. Then the greedy choice is the root of
-      this lowest freqency sub-tree with its three child nodes removed. Which means the optimal solution is the solution
+      this lowest frequency sub-tree with its three child nodes removed. Which means the optimal solution is the solution
       to the remaining tree with the greedy choice added back on.  This is done all the way up the tree as before.
     \end{proof}
   \end{solution}
