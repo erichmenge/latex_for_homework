@@ -50,6 +50,15 @@
 \begin{problem}{23.1-1}
   Let $(u,v)$ be a minimum-weight edge in a connected graph G. Show that $(u,v)$ belongs to some minimum spanning tree
   of G.
+  \begin{solution}
+    We can assume that $(u,v)$ does not belong to some minimum spanning tree. Then starting at the root node we add an
+    edge for the greedy choice $e$ where $w(e) \le w(e')$.  Since $w(e)$ is less than or equal to the old edge, if we
+    cut the old edge out we have a path with less weight.  When we come to the node $u$ which is connected to $v$ we
+    find that it is connected by a minimum weight edge. But $w(e) \le w(u,v)$, so we know that the greedy choice
+    selection of the MST must be no heavier than the existing edge. We assume that $(u,v)$ does not belong to this
+    MST.  But it has to because it is a minimum weight edge and the greedy choice can be no greater than it.  This is a
+    contradiction. So $(u,v)$ must belong to this minimum spanning tree.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{23.1-5}
