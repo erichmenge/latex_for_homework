@@ -38,19 +38,25 @@
   Suppose that we represent the graph $G = (V,E)$ as an adjacency matrix. Give a simple implementation of Prim's
   algorithm for this case that runs in $O(V^2)$ time.
   \begin{solution}
-    A modified version of the algorithm in the book:
+    We can use a modified version of the algorithm in the book. Since in an adjacency matrix we have $|V|$ rows and $|V|$
+    columns it is a $|V| \times |V|$ matrix. The main loop iterates over all the verticies, so that is $O(V)$. Then we need
+    to check the corresponding row in the adjacency matrix, which has $|V|$ columns. This matrix check is done in each of
+    the main loops, so it is done $V$ times. So we have $O(V^2)$. Note that only the row needs to be checked because it
+    is not directed, and thus the adjacency matrix is symmetric so there is no need to check the corresponding column as
+    well.
     \begin{lstlisting}[mathescape]
-      for each $u \in$ G.V
-        u.key = $\infty$
-        u.$\pi$ = NIL
-      r.key = 0
-      Q = G.V
-      while Q $\ne$ $\emptyset$
-        u = Extract-Min(Q)
-        for each v $\in$ G.Adj[u]
-          if v $\in$ Q and w(u,v) < v.key
-            v.$\pi$ = u
-            v.key = w(u,v)
+      MST-Prim(G, w, r)
+        for each $u \in$ G.V
+          u.key = $\infty$
+          u.$\pi$ = NIL
+        r.key = 0
+        Q = G.V
+        while Q $\ne$ $\emptyset$
+          u = Extract-Min(Q)
+          for each v $\in$ G.AdjMatrix[G.rowof(u)][0..|V| - 1]
+            if v $\in$ Q and w(u,v) < v.key
+              v.$\pi$ = u
+              v.key = w(u,v)
     \end{lstlisting}
   \end{solution}
 \end{problem}
