@@ -43,6 +43,16 @@
   Kruskal's algorithm can return different spanning trees for the same input graph G, depending on how it breaks ties
   when the edges are sorted into order. Show that for each minimum spanning tree $T$ of $G$, there is a way to sort the
   edges of $G$ in Kruskal's algorithm so that the algorithm returns $T$.
+  \begin{solution}
+    The reason Kruskal's algortithm may return different spanning trees is the given algorithm simply orders by weight.
+    In the event that two edges have the same minimum weight the alrogirthm in the book does not specify the selection
+    of that particular minimum weight edge.  So depending on specific algorithm implementation two correct
+    implementations could return different spanning trees.
+
+    If we were to add an aditional rule to the algorithm that we sort by minimum weight edge and by the vertex order
+    (i.e. always select the minimum weight edge to the vertex that appears in the list of vertices first) we can ensure
+    that for every graph $G$ there is only one MST $T$.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{23.2-2}
