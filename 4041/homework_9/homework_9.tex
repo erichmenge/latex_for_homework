@@ -31,6 +31,19 @@
 \begin{problem}{23.1-8}
   Let T be a minimum spanning tree of a graph G, and let L be the sorted list of the edge weights of T. Show that for
   any other minimum spanning tree $T'$ of G, the list L is also the sorted list of edge weights of $T'$.
+  \begin{solution}
+    For each iteration of the spanning tree algorithm the invariant must be maintained. That is the greedy choice that
+    the edge selected is a minimum weight edge.  More than one minimum weight edge may exist, but that means the weights
+    are equal, so no matter how you select the edge the weight entered on the list $L$ will be the same. This continues
+    for the next edge and so on.
+
+    If one list of edge weights differed than another it would mean that some edge was a higher weight than another
+    particular edge which would mean that the greedy choice was not selected for some edge. Thus the list with the
+    greater weight edge was not an optimal solution and the tree must not be a minimum spanning tree.
+
+    So for any particular graph $G$ there may be many different spanning trees, but because these differences result in
+    being able to choose more than one edge with the same weight, the sorted list of weights must be the same.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{23.1-9}
