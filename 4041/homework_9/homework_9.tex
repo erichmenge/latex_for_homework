@@ -50,6 +50,14 @@
   Let T be a minimum spanning tree of a graph $G = (V,E)$, and let $V'$ be a subset of $V$. Let $T'$ be the subgraph of
   $T$ induced by $V'$, and let $G'$ be the subgraph of $G$ induced by $V'$. Show that if $T'$ is connected, then $T'$ is
   a minimum spanning tree of $G'$.
+  \begin{solution}
+    Because $T'$ is a sub graph of $T$ and $T$ is a minimum spanning tree if we were to assume that $T'$ is not a
+    minimum spanning tree that would mean that there is some edge in $T'$ that is not a minimum weight edge so that the
+    invariant doesn't hold. This means we could replace this edge with the lighter weight edge but if we can do this it
+    must mean we do not have a minimum spanning tree so it is a contradiction. Thus if $T'$ is a subgraph of $T$ and $T$
+    is a minimum spanning tree $T'$ must also be a minimum spanning tree. Because if it wasn't, it could be improved,
+    but if it could be improved then $T$ could have a lower total weight meaning it must not be a MST.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{23.2-1}
