@@ -1,0 +1,125 @@
+\input{../../preamble.tex}
+\input{../class_info.tex}
+\usepackage{enumitem}
+
+\sethomeworknumber{3}
+
+\begin{document}
+\homeworkheader{\classnameandsection}
+
+\begin{problem}{8.4}
+  \begin{solution}
+    \begin{enumerate}
+      \item Alternative 1 is clustered, cannot be constructed.\\
+      \item
+        \tuple{11, (1,1)},
+        \tuple{12, (1,2)},
+        \tuple{18, (1,3)},
+        \tuple{19, (2,1)},
+        \tuple{19, (2,2)}
+      Unclustered, order not significant.\\
+      \item
+        \tuple{11, (1,1)},
+        \tuple{12, (1,2)},
+        \tuple{18, (1,3)},
+        \tuple{19, (2,1), (2,2) }
+      Unclustered, order not significant.\\
+      \item 11, 19. Clustered, order is important.\\
+      \item
+        \tuple{11, (1,1)}, \tuple{19, (2,1)}  Clustered, order is important.\\
+      \item
+        \tuple{11, (1,1)}, \tuple{19, (2,1), (2,2)}  Clustered, order is important.\\
+      \item Alternative 1 is clustered, can't be constructed. \\
+      \item
+        \tuple{1.8, (1,1)},
+        \tuple{2.0, (1,2)},
+        \tuple{3.4, (1,3)},
+        \tuple{3.2, (2,1)},
+        \tuple{3.8, (2,2)}.
+        Order is not significant.\\
+      \item
+        \tuple{1.8, (1,1)},
+        \tuple{2.0, (1,2)},
+        \tuple{3.4, (1,3)},
+        \tuple{3.2, (2,1)},
+        \tuple{3.8, (2,2)}.
+        Order is not significant.\\
+      \item Can't be constructed. GPA is out of order and clusters require order.\\
+      \item Can't be constructed. GPA is out of order and clusters require order.\\
+      \item Can't be constructed. GPA is out of order and clusters require order.
+    \end{enumerate}
+  \end{solution}
+\end{problem}
+
+\begin{problem}{8.6}
+  \begin{solution}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[scale=0.65]{problem_8_6.pdf}
+    \end{figure}
+  \end{solution}
+\end{problem}
+
+\begin{problem}{8.10 parts 2,3 and 4}
+  \begin{solution}
+    2. Change did for sequential employees (id).\\
+    3. Updating age for that same group of employees.\\
+    4. Update salary based on DID.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{12.2}
+  \begin{solution}
+    \begin{enumerate}
+      \item Sorted. \\
+      \item Linear hash.\\
+      \item B+ Tree index.\\
+      \item Sorted file.
+    \end{enumerate}
+  \end{solution}
+\end{problem}
+
+\begin{problem}{12.4}
+  \begin{solution}
+    \begin{enumerate}
+      \item \begin{enumerate}[label=\Alph*]
+        \item Match on Sailors.sid $<$ 50,000\\
+        \item Match on Sailors.sid = 50,000
+      \end{enumerate}
+      \item \begin{enumerate}[label=\Alph*]
+        \item No match, can't use range with hash.\\
+        \item Match on Sailors.sid = 50,000
+      \end{enumerate}
+      \item \begin{enumerate}[label=\Alph*]
+        \item Match on Sailors.sid $<$ 50,000 and the pair of Sailors.sid $<$ 50,000 $\land$ Sailors.age=21 \\
+        \item Match on Sailors.sid $<$ 50,000 and the pair of Sailors.sid $<$ 50,000 $\land$ Sailors.age $>$ 21 \\
+        \item Match on Sailors.sid = 50,000 \\
+        \item No match, second key can't be used by itself.
+      \end{enumerate}
+      \item \begin{enumerate}[label=\Alph*]
+        \item Match on Sailors.sid and the pair Sailors.sid = 50,000 $\land$ Sailors.age = 21 \\
+        \item Match on Sailors.sid = 50,000 (no match on other one because it is a range) \\
+        \item Match on Sailors.sid = 50,000 \\
+        \item No match, second key can't be used by itself.
+      \end{enumerate}
+    \end{enumerate}
+  \end{solution}
+\end{problem}
+
+\begin{problem}{12.6}
+  \begin{solution}
+    \textbf{Index nested loops join:} \\
+    \begin{itemize}
+      \item Hash: \#pages(R) + 2.2$\times$\#tuples(R)\\
+      \item Clustered: \#pages(R) + 4$\times$\#tuples(R) \\
+      \item Unclustered: \#pages(R) + (3 + $\frac{\#tuples(R)}{\#tuple(S)}$) $\times$ \#tuples(R) \\
+    \end{itemize}
+    \textbf{Sort-merge join:}\\
+    \begin{itemize}
+      \item 5(\#pages(R) + \#pages(S))
+    \end{itemize}
+  \end{solution}
+\end{problem}
+
+
+\end{document}
