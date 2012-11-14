@@ -26,6 +26,22 @@
   Argue that if all edge weights of a graph are positive, then any subset of edges that connects all vertices and has
   minimum total weight must be a tree. Give an example to show that the same conclusion does not follow if we allow some
   weights to be nonpositive.
+  \begin{solution}
+    In the case that all edge weights are positive we know that if we have some set of edges connecting all verticies
+    and the weight is a minimum weight it must be a minimum weight spanning tree because if we were to replace any any
+    of the edges in the tree with an edge of higher weight we could no longer have a minimum weight tree, since by
+    definition in the problem the tree must have minimum weight.
+
+    In the case of a mixture of negative and positive weights we cannot be sure that we don't have some cycle that was
+    chosen with a negative value, creating a sum of edges that give a minimum weight but contain an additional edge that
+    is not allowed.
+    \begin{figure}[H]
+      \centering
+      \caption{Potential Sub-Graphs}
+      \subfigure[No Negatives]{\includegraphics{23_1_7_a.eps}}
+      \subfigure[Negatives Allowed]{\includegraphics{23_1_7_b.eps}}
+    \end{figure}
+  \end{solution}
 \end{problem}
 
 \begin{problem}{23.1-8}
