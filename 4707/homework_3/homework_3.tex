@@ -107,6 +107,18 @@
 \end{problem}
 
 \begin{problem}{12.6}
+  \begin{solution}
+    \textbf{Index nested loops join:} \\
+    \begin{itemize}
+      \item Hash: \#pages(R) + 2.2$\times$\#tuples(R)\\
+      \item Clustered: \#pages(R) + 4$\times$\#tuples(R) \\
+      \item Unclustered: \#pages(R) + (3 + $\frac{\#tuples(R)}{\#tuple(S)}$) $\times$ \#tuples(R) \\
+    \end{itemize}
+    \textbf{Sort-merge join:}\\
+    \begin{itemize}
+      \item 5(\#pages(R) + \#pages(S))
+    \end{itemize}
+  \end{solution}
 \end{problem}
 
 
