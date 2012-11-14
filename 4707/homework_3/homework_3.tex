@@ -1,5 +1,6 @@
 \input{../../preamble.tex}
 \input{../class_info.tex}
+\usepackage{enumitem}
 
 \sethomeworknumber{3}
 
@@ -79,6 +80,30 @@
 \end{problem}
 
 \begin{problem}{12.4}
+  \begin{solution}
+    \begin{enumerate}
+      \item \begin{enumerate}[label=\Alph*]
+        \item Match on Sailors.sid $<$ 50,000\\
+        \item Match on Sailors.sid = 50,000
+      \end{enumerate}
+      \item \begin{enumerate}[label=\Alph*]
+        \item No match, can't use range with hash.\\
+        \item Match on Sailors.sid = 50,000
+      \end{enumerate}
+      \item \begin{enumerate}[label=\Alph*]
+        \item Match on Sailors.sid $<$ 50,000 and the pair of Sailors.sid $<$ 50,000 $\land$ Sailors.age=21 \\
+        \item Match on Sailors.sid $<$ 50,000 and the pair of Sailors.sid $<$ 50,000 $\land$ Sailors.age $>$ 21 \\
+        \item Match on Sailors.sid = 50,000 \\
+        \item No match, second key can't be used by itself.
+      \end{enumerate}
+      \item \begin{enumerate}[label=\Alph*]
+        \item Match on Sailors.sid and the pair Sailors.sid = 50,000 $\land$ Sailors.age = 21 \\
+        \item Match on Sailors.sid = 50,000 (no match on other one because it is a range) \\
+        \item Match on Sailors.sid = 50,000 \\
+        \item No match, second key can't be used by itself.
+      \end{enumerate}
+    \end{enumerate}
+  \end{solution}
 \end{problem}
 
 \begin{problem}{12.6}
