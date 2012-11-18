@@ -38,6 +38,23 @@
 \end{problem}
 
 \begin{problem}{3}
+  Consider the following language: $S = \{<M> | M \text{ is a DFA that accepts } w^R \text{ whenever it accepts w }\}$. Show that S is
+  decidable.
+  \begin{solution}
+    We need to ensure that the reverse of $M$ is equivalent to $M$. We can construct a Turing machine as follows:
+    T = ``On input $\tuple{M}$ where M is a DFA:
+    \begin{enumerate}
+      \item Create a DFA $M'$ from $M$. Since NFAs and DFAs are equivalent in power we're still maintaining the conditions.\\
+      \item Reverse the transition function in $M'$ and make all accept states start states, and vice versa.\\
+      \item Ensure there are epsilon transitions so that multiple accept states are now multiple start states.\\
+      \item Run $EQ_{DFA}$ (given in the book) on $\tuple{M, DFA(M')}$\\
+      \item If $EQ_{DFA}$ accepts, T accepts, if $EQ_{DFA}$ rejects, T rejects.\\
+    \end{enumerate}
+    ''
+
+    \noindent Since $EQ_{DFA}$ is decidable and decides that $M$ and $M'$ are equal where $M'$ is the reverse of $M$, $S$ is also
+    decidable.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{4}
