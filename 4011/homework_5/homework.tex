@@ -58,16 +58,28 @@
 \end{problem}
 
 \begin{problem}{4}
+  Let $C = \{<G,x> | \text{G is a CFG that generates at least one string that has x as a substring}\}$. Show that C is decidable.
+  (Hint: Use properties of context-free languages to change the question to be answered in such a way that you can
+  invoke the decider for $E_{CFG}$.)
 \end{problem}
 
 \begin{problem}{5}
+  Let A be a Turing-recognizable language consisting of descriptions of Turing machines $\{<M_1>, <M_2>,...\}$, where
+  every $M_i$ is a decider. Prove that some decidable language D is not decided by any decider $M_j$ whose description
+  appears in A. (Hint: you may find it helpful to consider an enumerator for A.)
 \end{problem}
 
 \begin{problem}{6}
+  Let C be a language. Prove that C is Turing-recognizable if and only if a decidable language D exists such that $C =
+  \{x | \exists y <x,y> \in D\}$. (Hint: For any fixed $n$, is it decidable if a Turing machine accepts a string in (at
+  most) $n$ steps?)
 \end{problem}
 
-\begin{problem}{7}
+\begin{problem}{7 (EC)}
+  Consider the language $HALT_{TM} = \{<M,w> | M \text{ is a Turing machine and M halts on w} \}$. We will see that this
+  language is not decidable. However, suppose that we are able to somehow provide a decider for this language. (This
+  kind of ``magical'' decider is sometimes called an oracle.) Show that we would then be able to provide a decider for
+  the language $D = \{<p> | p \text{ s a diophantine equation with integer roots}\}$.
 \end{problem}
-
 
 \end{document}
