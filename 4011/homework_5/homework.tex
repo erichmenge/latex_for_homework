@@ -67,6 +67,19 @@
   Let A be a Turing-recognizable language consisting of descriptions of Turing machines $\{<M_1>, <M_2>,...\}$, where
   every $M_i$ is a decider. Prove that some decidable language D is not decided by any decider $M_j$ whose description
   appears in A. (Hint: you may find it helpful to consider an enumerator for A.)
+  \begin{solution}
+    First create an enumerator $E_A$ for $A$ that enumerates every decider $\{<M_1>, <M_2>,...\}$.
+    \br
+    Then we can create a decider, that will do the opposite of $M_j$.
+    D = ``On input w:
+    \begin{enumerate}
+      \item Run string w on the machine $M_j$ in the enumerated list.\\
+      \item if $M_j$ accepts, machine T rejects, and vice versa.\\
+    \end{enumerate}
+    ''\\ So $D$ is a decider because it decides for each $M_j$ is a decider.  But $D \notin E_A$ because for every
+    string that causes the machine in $A$ to accept, $D$ will reject, and vice versa. In other words $D$ does not match
+    the description of any $M_j$.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{6}
