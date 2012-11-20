@@ -1,0 +1,151 @@
+\input{../../preamble.tex}
+\input{../class_info.tex}
+
+\sethomeworknumber{5}
+
+\begin{document}
+\homeworkheader{\classnameandsection}
+
+\begin{problem}{1}
+  Let $T = \{(i,j,k) | i,j,k \text{ are natural numbers}\}$. Show that T is countable.
+  \begin{solution}
+    For each pair $(i,j) \in \mathbb{N}$ we can show a correspondence between $(i,j)$ as $f: \mathbb{N} \rightarrow
+    \mathbb{N}$ \\
+    See figure ~\ref{fig:problem_1_a}.
+    \begin{figure}[H]
+      \centering
+      \caption{$f: \mathbb{N} \rightarrow \mathbb{N}$}
+      \includegraphics[scale=.5]{problem_1_a.eps}
+      \label{fig:problem_1_a}
+    \end{figure}
+    \noindent Then, if we let each unique pair $(i,j) = a, b, c, \ldots$ we can show a correspondence between those pairs and $k$.\\
+    See figure ~\ref{fig:problem_1_b}.
+    \begin{figure}[H]
+      \centering
+      \caption{$f: \mathbb{N} \times \mathbb{N} \rightarrow \mathbb{N}$}
+      \includegraphics[scale=.5]{problem_1_b.eps}
+      \label{fig:problem_1_b}
+    \end{figure}
+    Because $T$ is onto and one-to-one with $\mathbb{N}$ we can show that these sets are the same size and thus are
+    countable.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{2}
+  Let F be the set of all functions from natural numbers to natural numbers. Using a diagonalization argument, show that
+  F is uncountable. Hint: If F is countable, you should be able to list its elements in some order. Use this together
+  with a diagonalization argument to derive a contradiction.
+  \begin{solution}
+    We can assume F is countable and make a table of every function $F$
+    \begin{tabular}{ l c r l }
+      $f_1(1)$ & $f_1(2)$ & $f_1(3)$ & $\ldots$ \\
+      $f_2(1)$ & $f_2(2)$ & $f_2(3)$ & $\ldots$ \\
+      $f_3(1)$ & $f_3(2)$ & $f_3(3)$ & $\ldots$ \\
+      .\\
+      .\\
+      .\\
+    \end{tabular}
+    But then what if we Let $h_i = f_i + k$ where k is a natural number for some f in the table. Clearly $h \subseteq F$
+    in the natural numbers, but it violates the sequence in the table. Thus $F$ is uncountable by contradiction.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{3}
+  Consider the following language: $S = \{<M> | M \text{ is a DFA that accepts } w^R \text{ whenever it accepts w }\}$. Show that S is
+  decidable.
+  \begin{solution}
+    We need to ensure that the reverse of $M$ is equivalent to $M$. We can construct a Turing machine as follows:
+    T = ``On input $\tuple{M}$ where M is a DFA:
+    \begin{enumerate}
+      \item Create a DFA $M'$ from $M$. Since NFAs and DFAs are equivalent in power we're still maintaining the conditions.\\
+      \item Reverse the transition function in $M'$ and make all accept states start states, and vice versa.\\
+      \item Ensure there are epsilon transitions so that multiple accept states are now multiple start states.\\
+      \item Run $EQ_{DFA}$ (given in the book) on $\tuple{M, DFA(M')}$\\
+      \item If $EQ_{DFA}$ accepts, T accepts, if $EQ_{DFA}$ rejects, T rejects.\\
+    \end{enumerate}
+    ''
+
+    \noindent Since $EQ_{DFA}$ is decidable and decides that $M$ and $M'$ are equal where $M'$ is the reverse of $M$, $S$ is also
+    decidable.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{4}
+  Let $C = \{<G,x> | \text{G is a CFG that generates at least one string that has x as a substring}\}$. Show that C is decidable.
+  (Hint: Use properties of context-free languages to change the question to be answered in such a way that you can
+  invoke the decider for $E_{CFG}$.)
+  \begin{solution}
+    The language that has a string with $x$ as a substring is $\Sigma^*x\Sigma^*$.
+    We can create a turning machine $T$ to decide $C$.
+    T = ``On input \tuple{G, x}:
+    \begin{enumerate}
+      \item Let $G'$ be a CFG recognizing $\Sigma^*x\Sigma^* \cap G$\\
+      \item Invoke $E_{CFG}$ on CFG $G'$.\\
+      \item if $E_{CFG}$ accepts, reject, and vice versa.
+    \end{enumerate}
+    ''
+  \end{solution}
+  So we have a CFG $G'$ recognizing the language of $G$ with $x$ as a substring. Running this new CFG through $E_{CFG}$ we
+  can determine whether or not this CFG is empty. If it is empty (accept) then we want to reject, if it isn't empty
+  (reject) then we accept.  Since $E_{CFG}$ is a decider, and the CFGs are deciders, $T$ is a decider for $C$.
+\end{problem}
+
+\begin{problem}{5}
+  Let A be a Turing-recognizable language consisting of descriptions of Turing machines $\{<M_1>, <M_2>,...\}$, where
+  every $M_i$ is a decider. Prove that some decidable language D is not decided by any decider $M_j$ whose description
+  appears in A. (Hint: you may find it helpful to consider an enumerator for A.)
+  \begin{solution}
+    First create an enumerator $E_A$ for $A$ that enumerates every decider $\{<M_1>, <M_2>,...\}$.
+    \br
+    Then we can create a decider, that will do the opposite of $M_j$.
+    D = ``On input w:
+    \begin{enumerate}
+      \item Run string w on the machine $M_j$ in the enumerated list.\\
+      \item if $M_j$ accepts, machine T rejects, and vice versa.\\
+    \end{enumerate}
+    ''\\ So $D$ is a decider because it decides for each $M_j$ is a decider.  But $D \notin E_A$ because for every
+    string that causes the machine in $A$ to accept, $D$ will reject, and vice versa. In other words $D$ does not match
+    the description of any $M_j$.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{6}
+  Let C be a language. Prove that C is Turing-recognizable if and only if a decidable language D exists such that $C =
+  \{x | \exists y <x,y> \in D\}$. (Hint: For any fixed $n$, is it decidable if a Turing machine accepts a string in (at
+  most) $n$ steps?)
+  \begin{solution}
+    We must show both directions of the if and only if. First a decider $T_D$
+    \begin{enumerate}
+      \item $T_D =$ ``
+        \begin{enumerate}
+          \item Run $T_C$ on x for $|y|$ steps.
+          \item If $T_C$ accepts, accept. If $T_C$ rejects, reject.
+          \item Else reject.
+        \end{enumerate}
+      ''\\
+      \item Next $T_C$, the machine recognizing C. $T_C =$ ``
+        \begin{enumerate}
+          \item Run $T_D$ for each string in $\tuple{x, \Sigma^*}$.\\
+          \item $T_D$ accepts, accept.\\
+          \item Else continue to next string.\\
+        \end{enumerate}
+      ''
+    \end{enumerate}
+    $T_D$ is a decider, since it runs for a finite amount of steps and will either accept or reject. $T_C$ is a
+    recognizer as it iterates over the strings looking for strings in $C$.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{7 (EC)}
+  Consider the language $HALT_{TM} = \{<M,w> | M \text{ is a Turing machine and M halts on w} \}$. We will see that this
+  language is not decidable. However, suppose that we are able to somehow provide a decider for this language. (This
+  kind of ``magical'' decider is sometimes called an oracle.) Show that we would then be able to provide a decider for
+  the language $D = \{<p> | p \text{ is a Diophantine equation with integer roots}\}$.
+  \begin{solution}
+    If we could enumerate the Diophantine equations into a table we can come up with a pattern.  We could then use that
+    oracle to lookup values on the table and decide based upon whether or not there is a solution in the enumerated list
+    of Diophantine equations.
+  \end{solution}
+\end{problem}
+
+\end{document}
