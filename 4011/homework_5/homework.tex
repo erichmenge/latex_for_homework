@@ -140,7 +140,12 @@
   Consider the language $HALT_{TM} = \{<M,w> | M \text{ is a Turing machine and M halts on w} \}$. We will see that this
   language is not decidable. However, suppose that we are able to somehow provide a decider for this language. (This
   kind of ``magical'' decider is sometimes called an oracle.) Show that we would then be able to provide a decider for
-  the language $D = \{<p> | p \text{ s a diophantine equation with integer roots}\}$.
+  the language $D = \{<p> | p \text{ is a Diophantine equation with integer roots}\}$.
+  \begin{solution}
+    If we could enumerate the Diophantine equations into a table we can come up with a pattern.  We could then use that
+    oracle to lookup values on the table and decide based upon whether or not there is a solution in the enumerated list
+    of Diophantine equations.
+  \end{solution}
 \end{problem}
 
 \end{document}
