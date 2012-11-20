@@ -113,6 +113,27 @@
   Let C be a language. Prove that C is Turing-recognizable if and only if a decidable language D exists such that $C =
   \{x | \exists y <x,y> \in D\}$. (Hint: For any fixed $n$, is it decidable if a Turing machine accepts a string in (at
   most) $n$ steps?)
+  \begin{solution}
+    We must show both directions of the if and only if. First a decider $T_D$
+    \begin{enumerate}
+      \item $T_D =$ ``
+        \begin{enumerate}
+          \item Run $T_C$ on x for $|y|$ steps.
+          \item If $T_C$ accepts, accept. If $T_C$ rejects, reject.
+          \item Else reject.
+        \end{enumerate}
+      ''\\
+      \item Next $T_C$, the machine recognizing C. $T_C =$ ``
+        \begin{enumerate}
+          \item Run $T_D$ for each string in $\tuple{x, \Sigma^*}$.\\
+          \item $T_D$ accepts, accept.\\
+          \item Else continue to next string.\\
+        \end{enumerate}
+      ''
+    \end{enumerate}
+    $T_D$ is a decider, since it runs for a finite amount of steps and will either accept or reject. $T_C$ is a
+    recognizer as it iterates over the strings looking for strings in $C$.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{7 (EC)}
