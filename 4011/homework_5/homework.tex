@@ -61,6 +61,20 @@
   Let $C = \{<G,x> | \text{G is a CFG that generates at least one string that has x as a substring}\}$. Show that C is decidable.
   (Hint: Use properties of context-free languages to change the question to be answered in such a way that you can
   invoke the decider for $E_{CFG}$.)
+  \begin{solution}
+    The language that has a string with $x$ as a substring is $\Sigma^*x\Sigma^*$.
+    We can create a turning machine $T$ to decide $C$.
+    T = ``On input \tuple{G, x}:
+    \begin{enumerate}
+      \item Let $G'$ be a CFG recognizing $\Sigma^*x\Sigma^* \cap G$\\
+      \item Invoke $E_{CFG}$ on CFG $G'$.\\
+      \item if $E_{CFG}$ accepts, reject, and vice versa.
+    \end{enumerate}
+    ''
+  \end{solution}
+  So we have a CFG $G'$ recognizing the language of $G$ with $x$ as a substring. Running this new CFG through $E_{CFG}$ we
+  can determine whether or not this CFG is empty. If it is empty (accept) then we want to reject, if it isn't empty
+  (reject) then we accept.  Since $E_{CFG}$ is a decideder, and the CFGs are deciders, $T$ is a decider for $C$.
 \end{problem}
 
 \begin{problem}{5}
