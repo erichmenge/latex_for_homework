@@ -51,8 +51,24 @@
 \end{problem}
 
 \begin{problem}{25.1-6}
-Suppose we also wish to compute the vertices on shortest paths in the algorithms of this section. Show how to compute
-the predecessor matrix $\Pi$ from the completed matrix $L$ of shortest-path weights in $O(n^3)$ time.
+  Suppose we also wish to compute the vertices on shortest paths in the algorithms of this section. Show how to compute
+  the predecessor matrix $\Pi$ from the completed matrix $L$ of shortest-path weights in $O(n^3)$ time.
+  \begin{solution}
+    It would be better to compute the predecessor matrix at the same time as $L$ but since it wants a separate algorithm
+    we can make one that runs in $O(n^3)$ using EXTEND-SHORTEST-PATHS as a template.
+    \begin{lstlisting}[mathescape]
+      MAKE-PREDECESSOR-MATRIX(L, W)
+        Let $\Pi$ be a new n x n matrix
+        for i = 1 to n
+          for j = 1 to n
+            for k = 1 to n
+              if i == j or $L_{ij}$ == $\infty$
+                $\Pi_{ij}$ = NIL
+              else if $L_{ij}$ == $L_{ik}$ + $W_{kj}$
+                $\Pi_{ij} = k $
+        return $\Pi$
+    \end{lstlisting}
+  \end{solution}
 \end{problem}
 
 \begin{problem}{25.1-7}
