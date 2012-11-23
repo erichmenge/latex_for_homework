@@ -30,6 +30,11 @@ What does the matrix
  \end{pmatrix}
 \]
 used in the shortest-paths algorithms correspond to in regular matrix multiplication?
+  \begin{solution}
+    This is the identity matrix. We have zeros down the main diagonal so our operations don't create any new self loops,
+    and when this matrix is used on another matrix, the minimum between the existing matrix and this identity matrix
+    will be the existing matrix, because the minimum of some weight and infinity, is the existing weight.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{25.1-4}
