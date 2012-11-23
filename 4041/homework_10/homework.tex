@@ -8,6 +8,13 @@
 
 \begin{problem}{25.1-2}
   Why do we require that $w_{ii} = 0$ for all $1 \le i \le n$?
+  \begin{solution}
+    Because $w_{ii}$ would be a self loop. Defining it to equal zero means that ``staying put'' doesn't incur a cost. If
+    $w_{ii}$ was greater than zero you could follow the self loop an a particular node in a path an arbitrary amount of
+    times and increase the cumulative weight of the path.  In other words, if it doesn't equal zero the sum of the
+    weights along any given path could be arbitrarily increased. Defining $w_{ii} = 0$ allows us to safely ignore self
+    loops.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{25.1-3}
