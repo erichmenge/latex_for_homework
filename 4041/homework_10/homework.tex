@@ -18,18 +18,18 @@
 \end{problem}
 
 \begin{problem}{25.1-3}
-What does the matrix
-\[
- L^{(0)} =
- \begin{pmatrix}
-  0 & \infty & \infty & \cdots & \infty\\
-  \infty & 0 & \infty & \cdots & \infty\\
-  \infty & \infty & 0 & \cdots & \infty\\
-  \vdots & \vdots & \vdots & \ddots & \vdots \\
-  \infty & \infty & \infty & \cdots & 0 \\
- \end{pmatrix}
-\]
-used in the shortest-paths algorithms correspond to in regular matrix multiplication?
+  What does the matrix
+  \[
+   L^{(0)} =
+   \begin{pmatrix}
+    0 & \infty & \infty & \cdots & \infty\\
+    \infty & 0 & \infty & \cdots & \infty\\
+    \infty & \infty & 0 & \cdots & \infty\\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    \infty & \infty & \infty & \cdots & 0 \\
+   \end{pmatrix}
+  \]
+  used in the shortest-paths algorithms correspond to in regular matrix multiplication?
   \begin{solution}
     This is the identity matrix. We have zeros down the main diagonal so our operations don't create any new self loops,
     and when this matrix is used on another matrix, the minimum between the existing matrix and this identity matrix
@@ -39,6 +39,15 @@ used in the shortest-paths algorithms correspond to in regular matrix multiplica
 
 \begin{problem}{25.1-4}
   Show that matrix multiplication defined by EXTEND-SHORTEST-PATHS is associative.
+  \begin{solution}
+    The main operation in extend-shortest-paths is the minimum operation. $l'_{ij}$ is initialized to $\infty$ and then $l'_{ij}$ is compared to each $l_{ik} + w_{kj}$ for all $k$ in $1\ldots n$.
+
+    For any parenthesization of matrices the result of the minimum operation is unchanged. For example if we have some
+    edge weights in the first matrix, $(a, b)$ where $a < b$, and some corresponding edge weights in a second matrix
+    $(c, d)$ with $c < d$, and finally some corresponding edge weights in a third matrix $(e, f)$ with $g < h$ then
+    $min(a,b) + min(c,d) + min(e, f) = a + c + e$. Also $min(a + c + e, b + d + f) = a + c + e$.  Since addition is
+    associative, so is this matrix multiplication as defined by EXTEND-SHORTEST-PATHS.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{25.1-6}
