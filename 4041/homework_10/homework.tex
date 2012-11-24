@@ -1,0 +1,107 @@
+\input{../../preamble.tex}
+\input{../class_info.tex}
+
+\sethomeworknumber{10}
+
+\begin{document}
+\homeworkheader{\classnameandsection}
+
+\begin{problem}{25.1-2}
+  Why do we require that $w_{ii} = 0$ for all $1 \le i \le n$?
+  \begin{solution}
+    Because $w_{ii}$ would be a self loop. Defining it to equal zero means that ``staying put'' doesn't incur a cost. If
+    $w_{ii}$ was greater than zero you could follow the self loop an a particular node in a path an arbitrary amount of
+    times and increase the cumulative weight of the path.  In other words, if it doesn't equal zero the sum of the
+    weights along any given path could be arbitrarily increased. Defining $w_{ii} = 0$ allows us to safely ignore self
+    loops.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{25.1-3}
+  What does the matrix
+  \[
+   L^{(0)} =
+   \begin{pmatrix}
+    0 & \infty & \infty & \cdots & \infty\\
+    \infty & 0 & \infty & \cdots & \infty\\
+    \infty & \infty & 0 & \cdots & \infty\\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    \infty & \infty & \infty & \cdots & 0 \\
+   \end{pmatrix}
+  \]
+  used in the shortest-paths algorithms correspond to in regular matrix multiplication?
+  \begin{solution}
+    This is the identity matrix. We have zeros down the main diagonal so our operations don't create any new self loops,
+    and when this matrix is used on another matrix, the minimum between the existing matrix and this identity matrix
+    will be the existing matrix, because the minimum of some weight and infinity, is the existing weight.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{25.1-4}
+  Show that matrix multiplication defined by EXTEND-SHORTEST-PATHS is associative.
+  \begin{solution}
+    The main operation in extend-shortest-paths is the minimum operation. $l'_{ij}$ is initialized to $\infty$ and then $l'_{ij}$ is compared to each $l_{ik} + w_{kj}$ for all $k$ in $1\ldots n$.
+
+    For any parenthesization of matrices the result of the minimum operation is unchanged. For example if we have some
+    edge weights in the first matrix, $(a, b)$ where $a < b$, and some corresponding edge weights in a second matrix
+    $(c, d)$ with $c < d$, and finally some corresponding edge weights in a third matrix $(e, f)$ with $g < h$ then
+    $min(a,b) + min(c,d) + min(e, f) = a + c + e$. Also $min(a + c + e, b + d + f) = a + c + e$.  Since addition is
+    associative, so is this matrix multiplication as defined by EXTEND-SHORTEST-PATHS.
+  \end{solution}
+\end{problem}
+
+\begin{problem}{25.1-6}
+  Suppose we also wish to compute the vertices on shortest paths in the algorithms of this section. Show how to compute
+  the predecessor matrix $\Pi$ from the completed matrix $L$ of shortest-path weights in $O(n^3)$ time.
+  \begin{solution}
+    It would be better to compute the predecessor matrix at the same time as $L$ but since it wants a separate algorithm
+    we can make one that runs in $O(n^3)$ using EXTEND-SHORTEST-PATHS as a template.
+    \begin{lstlisting}[mathescape]
+      MAKE-PREDECESSOR-MATRIX(L, W)
+        Let $\Pi$ be a new n x n matrix
+        for i = 1 to n
+          for j = 1 to n
+            for k = 1 to n
+              if i == j or $L_{ij}$ == $\infty$
+                $\Pi_{ij}$ = NIL
+              else if $L_{ij}$ == $L_{ik}$ + $W_{kj}$
+                $\Pi_{ij} = k $
+        return $\Pi$
+    \end{lstlisting}
+  \end{solution}
+\end{problem}
+\newpage
+
+\begin{problem}{25.1-7}
+  We can also compute the vertices on shortest paths as we compute the shortest path weights.  Define $\pi^{(m)}_{ij}$
+  as the predecessor of vertex $j$ on any minimum-weight path from $i$ to $j$ that contains at most $m$ edges.  Modify
+  the Extend-Shortest-Paths and Slow-All-Pairs-Shortest-Paths procedures to compute the matrices
+  $\Pi^{(1)}$,$\Pi^{(2)}$,$\ldots$,$\Pi^{(n-1)}$ as the matrices $L^{(1)},L^{(2)},\ldots,L^{(n-1)}$ are computed.
+  \begin{solution}
+    \begin{lstlisting}[mathescape]
+      EXTEND-SHORTEST-PATHS(L, W, $\Pi$)
+        n = L.rows
+        let $L'$ = ($l'_{ij}$) be a new n $\times$ n matrix
+        for i = 1 to n
+          for j = 1 to n
+            $l'_{ij}$ = $\infty$
+            for k = 1 to n
+              $l'_{ij}$ = min($l'_{ij}$, $l_{ik} + w_{kj}$)
+              if $l'_{ij}$ == $l_{ik} + w_{kj}$ AND $i \ne j$
+                $\Pi_{ij}$ = k
+        return $L'$, $\Pi$
+
+        SLOW-ALL-PAIRS-SHORTEST-PATHS(W)
+          n = W.rows
+          $L^{(1)}$ = W
+          $\Pi^{(1)}$ = n $\times$ n matrix with all entries NIL
+          for m = 2 to n - 1
+            let $L^{(m)}$ be a new n $\times$ n matrix
+            let $\Pi^{(m)}$ be a new n $\times$ n matrix
+            $L^{(m)}$, $\Pi^{(m)}$ = EXTEND-SHORTEST-PATHS($L^{(m-1)}$, W, $\Pi^{(m-1)}$)
+          return $L^{(n-1)}$, $\Pi^{(n-1)}$
+    \end{lstlisting}
+  \end{solution}
+\end{problem}
+
+\end{document}
