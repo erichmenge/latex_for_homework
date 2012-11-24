@@ -76,6 +76,27 @@
   as the predecessor of vertex $j$ on any minimum-weight path from $i$ to $j$ that contains at most $m$ edges.  Modify
   the Extend-Shortest-Paths and Slow-All-Pairs-Shortest-Paths procedures to compute the matrices
   $\Pi^{(1)}$,$\Pi^{(2)}$,$\ldots$,$\Pi^{(n-1)}$ as the matrices $L^{(1)},L^{(2)},\ldots,L^{(n-1)}$ are computed.
+  \begin{solution}
+    \begin{lstlisting}[mathescape]
+      EXTEND-SHORTEST-PATHS(L, W, $\Pi$)
+        n = L.rows
+        let $L'$ = ($l'_{ij}$) be a new n $\times$ n matrix
+        for i = 1 to n
+          for j = 1 to n
+            $l'_{ij}$ = $\infty$
+            for k = 1 to n
+              $l'_{ij}$ = min($l'_{ij}$, $l_{ik} + w_{kj}$)
+        return $L'$
+
+        SLOW-ALL-PAIRS-SHORTEST-PATHS(W)
+          n = W.rows
+          $L^{(1)}$ = W
+          for m = 2 to n - 1
+            let $L^{(m)}$ be a new n $\times$ n matrix
+            $L^{(m)}$ = EXTEND-SHORTEST-PATHS($L^{(m-1)}$, W)
+          return $L^{(n-1)}$
+    \end{lstlisting}
+  \end{solution}
 \end{problem}
 
 \end{document}
