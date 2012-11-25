@@ -33,14 +33,15 @@
   \begin{solution}
     This is the identity matrix. We have zeros down the main diagonal so our operations don't create any new self loops,
     and when this matrix is used on another matrix, the minimum between the existing matrix and this identity matrix
-    will be the existing matrix, because the minimum of some weight and infinity, is the existing weight.
+    will be the existing matrix, because the minimum of some weight and infinity is the existing weight.
   \end{solution}
 \end{problem}
 
 \begin{problem}{25.1-4}
   Show that matrix multiplication defined by EXTEND-SHORTEST-PATHS is associative.
   \begin{solution}
-    The main operation in extend-shortest-paths is the minimum operation. $l'_{ij}$ is initialized to $\infty$ and then $l'_{ij}$ is compared to each $l_{ik} + w_{kj}$ for all $k$ in $1\ldots n$.
+    The main operation in extend-shortest-paths is the minimum operation. $l'_{ij}$ is initialized to $\infty$ and then
+    $l'_{ij}$ is compared to each $l_{ik} + w_{kj}$ for all $k$ in $1\ldots n$.
 
     For any parenthesization of matrices the result of the minimum operation is unchanged. For example if we have some
     edge weights in the first matrix, $(a, b)$ where $a < b$, and some corresponding edge weights in a second matrix
