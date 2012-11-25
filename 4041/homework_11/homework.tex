@@ -7,6 +7,24 @@
 \homeworkheader{\classnameandsection}
 
 \begin{problem}{25.1-8}
+  The FASTER-ALL-PAIRS-SHORTEST-PATHS procedure, as written, requires us to store $\lceil lg(n-1) \rceil$ matrices,
+  each with $n^2$ elements, for a total space requirement of $\Theta(n^2 lg n)$. Modify the procedure to require only
+  $\Theta(n^2)$ space by using only two $n \times n$ matrices.
+  \begin{solution}
+    \begin{lstlisting}[mathescape]
+    FASTER-ALL-PAIRS-SHORTEST-PATHS(W)
+      n = W.rows
+      $L'$ = W
+      m = 1
+      while m < n - 1
+        L = $L'$
+        $L'$ = EXTEND-SHORTEST-PATHS(L, L)
+        m = 2m
+      return $L'$
+    \end{lstlisting}
+    
+    \noindent So our two $n \times n$ matrices are $L$ and $L'$.  $L'$ is always the ``working'' matrix.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{25.2-2}
