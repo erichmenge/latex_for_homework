@@ -50,6 +50,10 @@
 
 \begin{problem}{25.2-6}
   How can we use the output of the Floyd-Warshall algorithm to detect the presence of a negative-weight cycle?
+  \begin{solution}
+    We can check the main diagonal of the output matrix of the algorithm.  If any negative numbers are present then
+    there is a negative weight path back to itself (cycle) $D_{i,i}$.
+  \end{solution}
 \end{problem}
 
 \end{document}
