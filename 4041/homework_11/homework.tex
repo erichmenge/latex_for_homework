@@ -32,15 +32,24 @@
 \end{problem}
 
 \begin{problem}{25.2-3}
+  Modify the FLOYD-WARSHALL procedure to compute the $\Pi^{(k)}$ matrices according to equations (25.6) and (25.7).
+  Prove rigorously that for all $i \in V$, the predecessor subgraph $G_{\pi,i}$ is a shortest-paths tree with root i.
 \end{problem}
 
 \begin{problem}{25.2-4}
+  As it appears above, the Floyd-Warshall algorithm requires $\Theta(n^3)$ space, since we compute $d_{ij}^{(k)}$ for
+  $i, j, k = 1, 2, \ldots, n$. Show that the following procedure, which simply drops all the superscripts, is scorrect,
+  and thus only $\Theta(n^2)$ space is required.
+
+  (Algorithm Omitted)
 \end{problem}
 
 \begin{problem}{25.2-5}
+
 \end{problem}
 
 \begin{problem}{25.2-6}
+  How can we use the output of the Floyd-Warshall algorithm to detect the presence of a negative-weight cycle?
 \end{problem}
 
 \end{document}
