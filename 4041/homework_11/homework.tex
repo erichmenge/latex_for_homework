@@ -42,6 +42,22 @@
   and thus only $\Theta(n^2)$ space is required.
 
   (Algorithm Omitted)
+  \begin{solution}
+    In the original algorithm given on page 695 on the book, line 4 creates a new matrix for every run of the loop.
+    This matrix is then assigned on line 7 from the previous matrix $(k - 1)$.
+    \br
+    At the end, only $D^{(n)}$ is returned, so that is really the only matrix we need.
+    \br
+    Looking at the new algorithm, $d_{ij}$ is set to the minimum of of either $d_{ij}$ or $d_{ik} + d_{kj}$. Because 
+    $d_{ij}$ hasn't been assigned yet at the minimum, it passes the old value in and then is assigned the new value.
+    This is exactly equivalent to the old algorithm that passes in the $k - 1$ value to get a return value which is then
+    assigned to the $k$ value of the matrix.
+    \br
+    Since the old algorithm does exactly nothing with those old matrices, the new algorithm is safe to just write over
+    the top of them and return $D$.
+    \br
+    Therefore the new algorithm is in fact correct, and saves a bunch of space.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{25.2-5}
