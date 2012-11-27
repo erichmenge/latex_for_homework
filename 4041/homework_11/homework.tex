@@ -34,6 +34,18 @@
 \begin{problem}{25.2-3}
   Modify the FLOYD-WARSHALL procedure to compute the $\Pi^{(k)}$ matrices according to equations (25.6) and (25.7).
   Prove rigorously that for all $i \in V$, the predecessor subgraph $G_{\pi,i}$ is a shortest-paths tree with root i.
+  \begin{solution}
+    \begin{lstlisting}[mathescape]
+      FLOYD-WARSHALL(W)
+      n = W.rows
+      $D^{(0)}$ = W
+      for k = 1 to n
+        let $D^{(k)}$ = ($d_{ij}^{(k)})$ be a new $n \times n$ matrix
+        for i = 1 to n
+          for j = 1 to n
+            $d_{ij}^{(k)}$ = min($d_{ij}^{(k-1)}$, $d_{ik}^{(k-1)}$ + $d_{kj}^{(k-1)}$)
+    \end{lstlisting}
+  \end{solution}
 \end{problem}
 
 \begin{problem}{25.2-4}
