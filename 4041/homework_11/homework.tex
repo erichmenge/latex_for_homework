@@ -61,7 +61,18 @@
 \end{problem}
 
 \begin{problem}{25.2-5}
-
+  \begin{solution}
+    Yes it is. In the original definition in the book the predecessor will get overwritten on equivalent weights.
+    This in effect means that the very last minimum weight (of many equivalent minimum weight paths) will be the one stored.
+    It is just as correct to use the definition given in this problem, in which case the first predecessor with minimum
+    weight will be the one that is stored, because all subsequent checks even if equal will not cause an overwrite.
+    \br
+    Since if there are multiple paths of minimum weight, a particular one isn't more valid than the other, it doesn't
+    matter whether or not we select the first predecessor of minimum weight, or the last predecessor of minimum weight,
+    since they are both shortest paths.
+    \br
+    Therefore these two methods are both entirely correct.
+  \end{solution}
 \end{problem}
 
 \begin{problem}{25.2-6}
