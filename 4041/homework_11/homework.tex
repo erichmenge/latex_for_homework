@@ -111,6 +111,9 @@
   \begin{solution}
     We can check the main diagonal of the output matrix of the algorithm.  If any negative numbers are present then
     there is a negative weight path back to itself (cycle) $D_{i,i}$.
+    \br
+    The reason this works is the only way a minimum-weight path will be back to itself is if it is able to follow some
+    negative weight cycle. Otherwise it would be better to not follow some particular cycle.
   \end{solution}
 \end{problem}
 
