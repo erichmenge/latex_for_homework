@@ -60,6 +60,11 @@
      return $D^{(n)}$
     \end{lstlisting}
   \end{solution}
+  \br
+  This algorithm is correct because it starts at the root, running along with the minimum edge selection. The old
+  minimum is replaced with an if statement that gives us more versatility in setting both the $\pi$ and the $d$ matrix.
+  Since $\pi$ is built at the same time, using the vertex with the minimum edge for all $i,j$ the predecessor matrix
+  grows as $d$ grows.
 \end{problem}
 
 \begin{problem}{25.2-4}
