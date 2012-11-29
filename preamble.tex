@@ -16,15 +16,12 @@
 
 \pagestyle{fancy}
 
-\newcommand{\sethomeworknumber}[1]{
-  \newcommand{\homeworktitle}{Homework #1}
-}
+\newcommand{\sethomeworknumber}[1]{\newcommand{\homeworktitle}{Homework #1}}
 \newcommand{\br}[0]{\vspace{12pt}\\}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
-\newcommand{\homeworkheader}[1]{
-  \title{\vspace{2in}\homeworktitle}
+\newcommand{\homeworkheader}[1]{\title{\vspace{2in}\homeworktitle}
   \author{Erich Menge (X.500: menge053, Student ID: 4624713) \\
   #1}
   \maketitle
@@ -38,11 +35,6 @@
   \ignorespacesafterend
 }
 
-\newenvironment{solution}{
-  \ignorespaces
-  \subsection*{Solution}
-}{
-  \ignorespacesafterend
-}
+\newenvironment{solution}{\ignorespaces\subsection*{Solution}}{\ignorespacesafterend}
 
 \newcommand{\tuple}[1]{\ensuremath{\left \langle #1 \right \rangle }}
