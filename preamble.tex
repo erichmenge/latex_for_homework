@@ -1,0 +1,40 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{fancyhdr}
+\usepackage[small,compact]{titlesec}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{listings}
+\setlength{\headheight}{15pt}
+
+\lhead{Erich Menge}
+\chead{\classnameandsection}
+\rhead{\homeworktitle}
+
+\pagestyle{fancy}
+
+\newcommand{\sethomeworknumber}[1]{\newcommand{\homeworktitle}{Homework #1}}
+\newcommand{\br}[0]{\vspace{12pt}\\}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\homeworkheader}[1]{\title{\vspace{2in}\homeworktitle}
+  \author{Erich Menge (X.500: abcdef, Student ID: 4xxxxxx) \\
+  #1}
+  \maketitle
+  \newpage
+}
+
+\newenvironment{problem}[1]{
+  \ignorespaces
+  \section*{Problem #1}
+}{
+  \ignorespacesafterend
+}
+
+\newenvironment{solution}{\ignorespaces\subsection*{Solution}}{\ignorespacesafterend}
+
+\newcommand{\tuple}[1]{\ensuremath{\left \langle #1 \right \rangle }}
